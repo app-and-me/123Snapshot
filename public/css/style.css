@@ -22,10 +22,19 @@
     --color2 : #174488;
     --color3 : #3173B0;
     --color4 : #144C7F;
+    --color5 : #143F7F;
 
     /*green*/
-    --color5 : #2D5526;
+    --color6 : #2D5526;
 
     /*gray*/
-    --color6 : #8F948E;
+    --color7 : #8F948E;
+
+    /*hover*/
+    --color8 : #DCEAFE;
+}
+
+*{
+    margin: 0;
+    padding: 0;
 }
