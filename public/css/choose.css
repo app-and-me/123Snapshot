@@ -1,0 +1,56 @@
+
+ 
+
+
+body {
+    background-image: url(/123_Snapshot/public/images/bg1.png);
+    background-size: cover;  
+    overflow: hidden;  
+    width: 100vw;   
+    height: 100vh;  
+    
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+}
+
+
+.open{
+    font-size: 2rem;
+    font-family: 'omyu_pretty';
+    color: var(--color2);
+}
+
+#public, #private{
+    width: 502px;
+    height: 91px;
+
+    border-radius: 72px;
+    border: 1px solid var(--color5);
+    color: var(--color3);
+    background: var(--color1);
+
+    text-align: center;
+    line-height: 90px;
+    font-family: 'omyu_pretty';
+    font-size: 2rem;
+    margin-top: 36px;
+     
+    
+}
+a{
+    text-decoration: none;
+    color: var(--text-color2);
+}
+
+ #public:hover, #private:hover{
+    background-color: var(--color8);
+ }
+
+ 
+ 
