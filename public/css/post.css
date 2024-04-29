@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url(/123_Snapshot/public/images/bg1.png);
+    background-size: cover;  
+    overflow: hidden;  
+    width: 100vw; /* 뷰포트 너비로*/
+    height: 100vh;  
+}
+.container{
+    display: flex;
+    justify-content: center;  
+    align-items: center;  
+    height: 100vh;  
+    flex-direction: column;  
+}
+.message{
+    width: 502px;
+    height: 94px;
+    background-color: var(--color1);
+    color: var(--color4);
+    border-radius: 16px;
+
+    font-size: 2rem;
+    font-family: 'omyu_pretty';
+    padding: 5px;
+    text-align: center;
+    line-height: 90px;
+}

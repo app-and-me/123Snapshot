@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LOTTERIACHAB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+ 
+
+:root{
+   /*white*/
+   --color1 : #FFF;
+
+   /*blue*/
+    --color2 : #174488;
+    --color3 : #3173B0;
+    --color4 : #144C7F;
+    --color5 : #143F7F;
+
+    /*green*/
+    --color6 : #2D5526;
+
+    /*gray*/
+    --color7 : #8F948E;
+
+    /*hover*/
+    --color8 : #DCEAFE;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
