@@ -1,0 +1,47 @@
+
+
+body {
+    background-image: url(/123_Snapshot/public/images/bg1.png);
+    width: 2500px;
+    height: 1080px;
+    background-size: cover;  
+    overflow: hidden;  
+    width: 100vw;  
+    height: 100vh;  
+    
+}
+
+#letter-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.letter{
+    width: 848px;
+    height: 680px;   
+}
+
+#message1{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#message2{
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+#message1, #message2 {
+    font-size: 3.125rem;
+    font-family: 'omyu_pretty';
+    color: var(--color6);
+}
+ 
