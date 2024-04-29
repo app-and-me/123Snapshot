@@ -1,0 +1,58 @@
+*{
+    font-family: 'omyu_pretty';
+}
+
+body {
+    background-image: url(/123_Snapshot/public/images/bg1.png);
+    width: 2500px;
+    height: 1080px;
+    background-size: cover;  
+    overflow: hidden;  
+    width: 100vw;  
+    height: 100vh;  
+    
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.guide{
+    color: var(--color2);
+    text-align: center;
+    font-size: 2.5rem;  
+}
+
+#writing-box{
+    width: 838px;
+    height: 440px;
+    border-radius: 20px;
+    border: 1px solid var(--color4);
+    background: var(--color1);
+    margin-top: 70px;
+
+    padding: 10px; 
+    outline: none;
+    font-size: 1.5rem;
+}
+ 
+#finish{
+    width: 506px;
+    height: 52px;
+    border-radius: 8px;
+    border: 1px solid var(--color4);
+    background: var(--color2);
+    color: var(--color1);
+    font-size: 1.5rem;
+    margin-top: 40px;
+}
+ 
+#finish:hover{
+    background-color: var(--color3);
+}
+
+ 
