@@ -1,9 +1,5 @@
-
- 
-
-
 body {
-    background-image: url(/123_Snapshot/public/images/bg1.png);
+    background-image: url(../images/bg1.png);
     background-size: cover;  
     overflow: hidden;  
     width: 100vw;   
