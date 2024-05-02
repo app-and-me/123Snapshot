@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url(/123_Snapshot/public/images/bg1.png);
+    background-image: url(../images/bg1.png);
     width: 2500px;
     height: 1080px;
     background-size: cover;  
