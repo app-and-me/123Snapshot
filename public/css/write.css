@@ -4,7 +4,7 @@
 
 body {
     background-image: url(../images/bg1.png);
-    width: 2500px;
+    width: 1920px;
     height: 1080px;
     background-size: cover;  
     overflow: hidden;  
@@ -12,6 +12,7 @@ body {
     height: 100vh;  
     
 }
+ 
 
 #container{
     display: flex;
@@ -27,25 +28,43 @@ body {
     font-size: 2.5rem;  
 }
 
-#writing-box{
+#title-box{
     width: 838px;
-    height: 440px;
+    height: 25px;
+    border-radius: 12px;
+    margin-top: 56px;
+    
+}
+
+#writing-box{
     border-radius: 20px;
+    width: 838px;
+    height: 377px;
+    margin-top: 16.18px;
+    
+}
+
+#title-box, #writing-box{
     border: 1px solid var(--color4);
     background: var(--color1);
-    margin-top: 70px;
-
-    padding: 10px; 
+    box-shadow: 0px 2px 6.5px 0px rgba(0, 0, 0, 0.08);
+    
+     
+    padding: 20px; 
     outline: none;
     font-size: 1.5rem;
 }
- 
+.placeholder{
+    color: var(--color7);
+     
+} 
+
 #finish{
     width: 506px;
     height: 52px;
     border-radius: 8px;
     border: 1px solid var(--color4);
-    background: var(--color2);
+    background: var(--color3);
     color: var(--color1);
     font-size: 1.5rem;
     margin-top: 40px;
