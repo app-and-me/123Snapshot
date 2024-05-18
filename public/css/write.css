@@ -68,6 +68,7 @@ body {
     color: var(--color1);
     font-size: 1.5rem;
     margin-top: 40px;
+    cursor: pointer;
 }
  
 #finish:hover{
