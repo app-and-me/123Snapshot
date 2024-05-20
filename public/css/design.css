@@ -1,0 +1,45 @@
+body {
+    /* background-image: url(../images/background.png); */
+    /* background-repeat: no-repeat; */
+    background-image: url(../images/bg1.png);
+    background-size: cover;  
+    overflow: hidden;  
+    width: 100vw;   
+    height: 100vh; 
+}
+
+#polaroid {
+    width: 688px;
+    height: 746px;
+    background-color: var(--color1);
+}
+
+#picture {
+    margin-top: 50px;
+    /* justify-content: space-between; */
+    margin-left: 67px;
+}
+
+#complete {
+    width: 506px;
+    height: 52px;
+    flex-shrink: 0;
+
+    border-radius: 8px;
+    border: 1px solid #3173B0;
+    background: var(--, #3173B0);
+}
+
+#pen {
+    width: 68px;
+    height: 68px;
+    border-radius: 50px;
+    background-color: var(--color1);
+}
+
+#eraser {
+    width: 68px;
+    height: 68px;
+    border-radius: 50px;
+    background-color:var(--color1); 
+}
