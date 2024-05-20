@@ -1,26 +1,23 @@
-// 환경 변수 사용
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
 const sequelize = new Sequelize(
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  process.env.DB_DATABASE,
+  process.env.MYSQL_DATABASE, // database name
+  process.env.MYSQL_USERNAME, // username
+  process.env.MYSQL_PASSWORD, // password
   {
-    host: process.env.DB_HOST,
-    prot: process.env.DB_PORT,
-    dialect: "mysql"
+    host: process.env.MYSQL_HOST,
+    port: process.env.MYSQL_PORT,
+    dialect: 'mysql'
   }
-)
+);
 
-// 연결 테스트
-sequelize
-    .authenticate()
-    .then(() => {
-        console.log('Connected to the config');
-    })
-    .catch((err) => {
-        console.error('Unable to connect to the config:', err);
-    });
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 module.exports = sequelize;
