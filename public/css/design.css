@@ -6,10 +6,28 @@ body {
     height: 100vh; 
 }
 
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 108px;
+ }
+
+ #btn-container{
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: 10%;
+    left: 14.5%;
+    
+ }
 #polaroid {
     width: 688px;
     height: 746px;
     background-color: var(--color1);
+     
 }
 
 #picture {
@@ -21,11 +39,18 @@ body {
 #complete {
     width: 506px;
     height: 52px;
-    flex-shrink: 0;
+    margin-top: 62px;
 
     border-radius: 8px;
     border: 1px solid #3173B0;
-    background: var(--, #3173B0);
+    background: var(--color3);
+    color: var(--color1);
+
+    text-align: center;
+    font-family: 'omyu_pretty';
+    font-size: 1.25rem;
+
+    cursor: pointer;
 }
 
 #pen {
@@ -33,6 +58,10 @@ body {
     height: 68px;
     border-radius: 50px;
     background-color: var(--color1);
+    margin-bottom: 18px;
+    border: 2px solid var(--color2);
+    cursor: pointer;
+     
 }
 
 #eraser {
@@ -40,4 +69,8 @@ body {
     height: 68px;
     border-radius: 50px;
     background-color:var(--color1); 
+    border: 2px solid var(--color2);
+    cursor: pointer;
 }
+
+ 
