@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Letter} = require('../models/letters');
+// const {Letter} = require('../models/letters');
 
 // 예시 코드
 router.get("/photos/:id", (req,res) => {
