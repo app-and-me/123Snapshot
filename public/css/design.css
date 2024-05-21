@@ -1,0 +1,76 @@
+body {
+    background-image: url(../images/bg1.png);
+    background-size: cover;  
+    overflow: hidden;  
+    width: 100vw;   
+    height: 100vh; 
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 108px;
+ }
+
+ #btn-container{
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: 10%;
+    left: 14.5%;
+    
+ }
+#polaroid {
+    width: 688px;
+    height: 746px;
+    background-color: var(--color1);
+     
+}
+
+#picture {
+    margin-top: 50px;
+    /* justify-content: space-between; */
+    margin-left: 67px;
+}
+
+#complete {
+    width: 506px;
+    height: 52px;
+    margin-top: 62px;
+
+    border-radius: 8px;
+    border: 1px solid #3173B0;
+    background: var(--color3);
+    color: var(--color1);
+
+    text-align: center;
+    font-family: 'omyu_pretty';
+    font-size: 1.25rem;
+
+    cursor: pointer;
+}
+
+#pen {
+    width: 68px;
+    height: 68px;
+    border-radius: 50px;
+    background-color: var(--color1);
+    margin-bottom: 18px;
+    border: 2px solid var(--color2);
+    cursor: pointer;
+     
+}
+
+#eraser {
+    width: 68px;
+    height: 68px;
+    border-radius: 50px;
+    background-color:var(--color1); 
+    border: 2px solid var(--color2);
+    cursor: pointer;
+}
+
+ 

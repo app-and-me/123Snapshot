@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+
+    background-image: url(../images/startscreen.png);
+    background-repeat: no-repeat;
+    background-size: cover;  
+    overflow: hidden;  
+    width: 100vw;   
+    height: 100vh; 
+}
+
+#container {
+    display: flex;
+    
+}
+
+#container-title {
+
+    margin-top: 198px;
+}
+
+#image_balloon {
+     
+}
+
+#button-container{
+    position: absolute;
+    top: 60%;
+    left: 33%;
+     
+}
+
+#image_title {
+    width: 894px;
+    height: 430px;
+    flex-shrink: 0;
+}
+
+#image_cloud {
+    width: 529px;
+    height: 285px;
+    
+    background-image: none; /* 배경 이미지 제거 */
+    background-color: transparent; /* 배경 색상을 투명하게 설정 */
+    border: none; /* 필요시 테두리 제거 */
+    cursor: pointer;
+    
+    background-image: url(../images/minicloud.png);
+    /* margin-top: 662px; */
+
+    font-family: 'omyu_pretty';
+    font-size: 3rem;
+    color: var(--color2);
+    padding: 55px 10px 6px  30px;
+    text-align: center;
+}
+
+
