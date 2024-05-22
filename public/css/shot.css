@@ -1,0 +1,57 @@
+ body {
+  background-image: url(../images/bg1.png);
+  width: 1920px;
+  height: 1080px;
+  background-size: cover;  
+  overflow: hidden;  
+  width: 100vw;  
+  height: 100vh;  
+  
+}
+
+
+#container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+ 
+.cloud-picture{
+   width: 301px;
+  height: 162px;  
+  justify-content: center;   
+  margin-top: 30px;
+  position: relative;
+}
+
+ #box{
+    width: 750px;
+    height: 684px;
+    background-color: var(--color1);
+    border: 1px solid var(--color2);
+    border-radius: 8px;
+    overflow: hidden; /*videio가 box를 넘어가지 않게*/
+    margin-top: 30px;
+ }
+
+ #video {
+  width: 100%;  
+  height: 100%;
+  object-fit: cover;/* video가 부모 요소인 box에 꽉 차도록 설정 */
+  
+}
+
+#countdown{
+  font-size: 3.3rem;
+  font-family: 'omyu_pretty';
+  color: var(--color2);
+  text-align: center;
+
+  position: absolute;
+  top: 11%;
+  left: 50.4%;
+  transform: translate(-50%, -50%);
+}
+
+ 
