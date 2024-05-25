@@ -7,6 +7,10 @@ const router = express.Router();
 // 이미지 조회
 router.get('image_paths/:id', async (req, res) => {
     try {
+        // id 파라미터 추출
+        const { id } = req.params
+
+        // id에 해당하는 letter 모델 레코드 조회
         const letter = await Letter.findOne({
             where: { id },
             include: [{
