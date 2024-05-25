@@ -7,11 +7,29 @@ const router = express.Router();
 // 이미지 조회
 router.get('image_paths/:id', async (req, res) => {
     try {
-        var img = req.params.image_paths;
-        console.log('이미지 요청: ' + img);
-        res.sendFile('../public/images' + img);
+        // id 파라미터 추출
+        const { id } = req.params
+
+        // id에 해당하는 letter 모델 레코드 조회
+        const letter = await Letter.findOne({
+            where: { id },
+            include: [{
+                association: 'image_paths', // 이미지 경로 필드명 확인
+                attribute: ['imagePath'],   // 이미지 경로만 조회
+            }],
+        });
+
+        if (!letter) {
+            return res.status(404).json({ message: "해당 id의 이미지를 찾을 수 없습니다."})
+        }
+
+        const imagePath = letter.image_paths[0].imagePath
+        
+        // 이미지 경로 반환
+        return res.status(200).json({ imagePath });
     } catch (error) {
-        console.error('Error');
+        console.error(error);
+        return res.status(500).json({ message: "이미지 불러오기 실패" })
     }
 })
 

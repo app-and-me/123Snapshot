@@ -13,13 +13,13 @@ router.get('/broad', async (req, res) => {
       // 시작 인덱스 계산
       const startIndex = (page - 1) * perPage;
       
-      // 공개된 사진 및 title만 검색
+      // yn이 1인, 공개된 사진 및 title만 검색
       const [image_paths, titles] = await Promise.all([
-        image_paths.findAll({ 
+        Letter.findAll({ 
           where: { yn: 1 },
           offset: startIndex, 
           limit: perPage }),
-        titles.findAll({ 
+        Letter.findAll({ 
           where: { yn: 1 },
           offset: startIndex, 
           limit: perPage }),
