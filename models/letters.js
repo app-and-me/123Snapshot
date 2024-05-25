@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/config');
 
 const Letter = (sequelize) => sequelize.define('letters', {
     id: {
