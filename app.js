@@ -13,8 +13,7 @@ const port = 3000;
 
 // routes 만든 라우터 불러오기
 const imagePathRouter = require('./routes/image_paths');
-//const titlesRouter = require('./routes/titles');
-const lettersRouter = require('./routes/letters');
+const titlesRouter = require('./routes/titles');
 
 sequelize.sync()
   .then(() => {
@@ -39,8 +38,7 @@ app.use(session({
 
 // router
 app.use('/image_path', imagePathRouter);
-//app.use('/titles', titlesRouter);
-app.use('/letters', lettersRouter);
+app.use('/titles', titlesRouter);
 
 // 서버 실행
 app.listen(port, () => {
