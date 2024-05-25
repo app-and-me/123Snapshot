@@ -15,9 +15,9 @@ const Letter = (sequelize) => sequelize.define('letters', {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    letters: {
-      type: DataTypes.TEXT,
-      allowNull: true
+    yn: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
 })
  
