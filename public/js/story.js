@@ -8,18 +8,13 @@
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
         var letterballoon = document.getElementById('letterballoon');
-        letterballoon.style.bottom = '160px'; 
+        letterballoon.style.bottom = '190px'; 
         setTimeout(function() {
-            letterballoon.style.bottom = '10px';
+            letterballoon.style.bottom = '90px';
         }, 1500); 
-    }, 2000); 
+    }, 3000); 
 
     setTimeout(function() {
         window.location.href = "../views/letter.html";
-    }, 6700);
+    }, 7000);
 });
-
-
-// setTimeout(function(){
-//     window.location.href="shot.html"; //3초 후 다음 페이지로 이동
-// },2500)
