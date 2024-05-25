@@ -1,16 +1,12 @@
 const express = require('express');
+const {Letter} = require('../models');      // index.js는 require 시 이름 생략 가능 
+const { Op } = require('sequelize');
+
 const router = express.Router();
-// const {Letter} = require('../models/letters');
 
 // 예시 코드
-router.get('image_paths/:id', async (req, res) => {
-    try {
-        var img = req.params.image_paths;
-        console.log('이미지 요청: ' + img);
-        res.sendFile('../public/images' + img);
-    } catch (error) {
-        console.error('Error');
-    }
+router.get("/photos/:id", (req,res) => {
+    res.send("OK!");
 })
 
 // app.js에서 사용할 수 있도록 내보냄
