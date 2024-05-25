@@ -52,10 +52,9 @@ body {
     cursor: pointer;
     
     background-image: url(../images/minicloud.png);
-    /* margin-top: 662px; */
-
-    font-family: 'omyu_pretty';
+    
     font-size: 3rem;
+    font-family: 'omyu_pretty';
     color: var(--color2);
     padding: 55px 10px 6px  30px;
     text-align: center;
