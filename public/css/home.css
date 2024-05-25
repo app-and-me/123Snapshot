@@ -22,17 +22,24 @@ body {
 
 #container-title {
 
-    margin-top: 198px;
+    /* margin-top: 198px; */
+    position: absolute;
+    top: 15%;
+    left: 45%;
 }
 
+
 #image_balloon {
+    margin-left: 65px;
+    position: absolute;
+    top: 6%;
      
 }
 
 #button-container{
     position: absolute;
     top: 60%;
-    left: 33%;
+    left: 40%;
      
 }
 
@@ -63,5 +70,17 @@ body {
 #image_cloud:hover {
     transform: scale(1.05); /* 1.05배로 확대하는 트랜스폼 설정 */
 }
+
+#image_balloon {
+    position: relative;
+    animation: shake 1.3s infinite ease-in-out;
+}
+
+@keyframes shake {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+}
+
 
 
