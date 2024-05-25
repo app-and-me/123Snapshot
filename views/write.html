@@ -9,11 +9,15 @@
 </head>
 <body>
     <div id="container">
-        <div class="guide">과거의 나에게 할 말을 작성해 주세요!</div>
-        <div id="writing-box" contenteditable="true"></div>  <!-- #writing-box : 글 작성하는 곳 -->
-        <a href="../views/choose.html"><button id="finish">완료</button></a>  <!--#finish : 완료 버튼 -->
+        <form action="/letters/:id" method="post"> 
+            <div class="guide">과거의 나에게 할 말을 작성해 주세요!</div>
+            <div class="form-group">
+                <!-- 글 작성 공간 -->
+             <textarea id="writing-box" name="message" rows="10" placeholder="과거의 나에게 한마디를 남긴다면?"></textarea>
+            </div>
+            <!-- a태그 눌렀을때 안넘어감 ->redirect 하기 -->
+           <<button type="submit" id="finish">완료</button>
+        </form>
     </div>
-
-    <script src="../public/js/write.js"></script>
-</body>
+</body> 
 </html>

@@ -6,12 +6,17 @@
     <title>게시여부 화면</title>
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/choose.css">
+    <script src="../public/js/choose.js"></script>
 </head>
 <body>
-    <div id="container">
-        <div class="open">사진을 공개할까요?</div>
-        <a href="../views/post.html"><button id="public"> 네! 공개할래요.</button></a>  <!-- 공개 버튼 -->
-        <a href="../views/post.html"><button id="private">아니요, 공개 안 할래요.</button></a> <!-- 비공개 버튼 -->
+    
+    <form id="myForm" action="/letters/:id" method="post">
+        <div id="container">
+        <div class="open">사진을 공개할까요?</div> 
+         <button type="submit" id="public" name="visibility" value="public"> 네! 공개할래요.</button>
+        <button type="submit" id="private" name="visibility" value="private">아니요, 공개 안 할래요.</button>
     </div>
+    </form>
+    
 </body>
 </html>
