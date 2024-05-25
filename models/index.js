@@ -1,6 +1,4 @@
-// module export
-// const로 상수 선언 
-const sequelize = require('../config/config')
+const sequelize = require('../config/config')   // DB 설정을 불러옴
 
 const letter = require('./letters')(sequelize);
 
