@@ -32,8 +32,9 @@
     border: 1px solid var(--color2);
     border-radius: 8px;
     overflow: hidden; /*videio가 box를 넘어가지 않게*/
-    margin-top: 30px;
+    margin: 30px auto;
  }
+ 
 
  #video {
   width: 100%;  
