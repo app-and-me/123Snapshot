@@ -13,8 +13,8 @@
     <form id="myForm" action="/titles/:id" method="post">
         <div id="container">
         <div class="open">사진을 공개할까요?</div> 
-         <button type="submit" id="public" name="visibility" value="public"> 네! 공개할래요.</button>
-        <button type="submit" id="private" name="visibility" value="private">아니요, 공개 안 할래요.</button>
+         <button type="submit" id="public" name="visibility" value="public" onclick="publicNextPage(event)"> 네! 공개할래요.</button>
+        <button type="submit" id="private" name="visibility" value="private" onclick="privateNextPage(event)">아니요, 공개 안 할래요.</button>
     </div>
     </form>
     

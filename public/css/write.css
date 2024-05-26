@@ -54,8 +54,8 @@ body {
     background: var(--color2);
     color: var(--color1);
     font-size: 1.5rem;
-    margin-top: 40px;
     cursor: pointer;
+    margin: 40px auto auto 100px;
 }
 
 #finish:hover{
