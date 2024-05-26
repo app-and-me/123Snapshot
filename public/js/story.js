@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
             letterballoon.style.bottom = '90px';
         }, 1500); 
-    }, 3000); 
+    }, 1300); 
 
     setTimeout(function() {
         window.location.href = "../views/letter.html";
