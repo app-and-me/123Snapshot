@@ -6,13 +6,13 @@ const sequelize = require("./config/config");
 
 
 const path = require('path');
-const bodyParse = require('body-parser')
+const bodyParse = require('body-parser');
 
 const app = express();
 const port = 3000;
 
 // 템플릿 엔진으로 ejs 사용
-app.set('view engine', ejs);
+app.set('view engine', 'ejs');
 
 // routes 만든 라우터 불러오기
 const imagePathRouter = require('./routes/image_paths');
