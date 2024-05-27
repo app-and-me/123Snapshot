@@ -7,7 +7,7 @@ const fs = require('fs');
 const router = express.Router();
 
 // 이미지 조회
-router.get('/image_paths/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         // id 파라미터 추출
         const { id } = req.params
@@ -36,7 +36,7 @@ router.get('/image_paths/:id', async (req, res) => {
 })
 
 // 이미지 저장
-router.post('/image_paths/:id', async (req,res) => {
+router.post('/:id', async (req,res) => {
     try {
         const {id} = req.params;
         // const img = req.body.이미지경로가 저장된 곳;
@@ -51,7 +51,7 @@ router.post('/image_paths/:id', async (req,res) => {
 })
 
 // 이미지 수정
-router.put('/image_paths/:id', async (req,res) => {
+router.put('/:id', async (req,res) => {
     try {
         const {id} = req.params;
         // 이미지 저장할 때의 id와 같은지 확인하고 이미지 경로 수정
