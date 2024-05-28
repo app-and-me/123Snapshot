@@ -45,6 +45,11 @@ app.use('/image_path', imagePathRouter);
 app.use('/titles', titlesRouter);
 app.use('/broads', broadsRouter);
 
+// 처음 화면 시작
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
 // 서버 실행
 app.listen(port, () => {
     console.log(`${port}에서 서버 실행`);

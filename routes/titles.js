@@ -4,12 +4,6 @@ const { Op } = require('sequelize');
 
 const router = express.Router();
 
-// 예시 코드
-// router.get("/titles/:id", (req,res) => {
-//     res.send("OK!");
-// })
-
-
 // 제목 저장
 router.post("/:id", async (req,res) => {
     try {
