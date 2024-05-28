@@ -15,6 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 1300); 
 
     setTimeout(function() {
-        window.location.href = "../views/letter.html";
+        window.location.href = "../views/letter.ejs";
     }, 5000);
 });
