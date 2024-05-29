@@ -97,15 +97,12 @@ if (imageLoader) {
   imageLoader.addEventListener("change", handleImage);
 }
 
-// Load the image from a predefined URL
 loadImage();
-
-
 
 const penButton = document.getElementById('pen');
 const colorElements = document.querySelectorAll('.controls__color');
 
-// Initially hide the color elements
+
 colorElements.forEach(element => element.classList.add('hidden'));
 
 penButton.addEventListener('click', () => {
@@ -126,5 +123,15 @@ penButton.addEventListener('click', () => {
     });
 });
 //시험
+
+function clearCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white"; 
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  loadImage();
+  
+}
+
+eraser.addEventListener("click", clearCanvas);
 
 
