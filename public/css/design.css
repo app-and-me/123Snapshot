@@ -1,40 +1,71 @@
-body {
-    background-image: url(../images/bg1.png);
-    background-size: cover;  
-    overflow: hidden;  
-    width: 100vw;   
-    height: 100vh; 
+* {
+    padding: 0;
+    margin: 0;
 }
 
-#container{
+body {
+    background-image: url(../images/bg1.png);
+    background-size: cover;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+
     display: flex;
-    justify-content: center;
+    /* flex-direction: column; */
     align-items: center;
-    flex-direction: column;
-    margin-top: 108px;
- }
+}
 
- #btn-container{
+#container {
     display: flex;
-    flex-direction: column;
-
     position: absolute;
     top: 10%;
-    left: 14.5%;
-    
- }
-#polaroid {
+    left: 12%;
+
+}
+
+.controls__colors {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    margin-right: 15px;
+}
+
+
+.canvas {
     width: 688px;
     height: 746px;
     background-color: var(--color1);
-     
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-#picture {
-    margin-top: 50px;
-    /* justify-content: space-between; */
-    margin-left: 67px;
+.controls {
+    /* margin-top: 30px; */
+    margin-right: 250px;
+    display: flex;
+    /* flex-direction: column;/ */
+    align-items: flex-start;
 }
+
+.controls__btns button:active {
+    transform: scale(0.98);
+    /*  요소를 확대 또는 축소 */
+}
+
+.controls .controls__colors {
+    display: flex;
+    flex-direction: column;
+}
+
+.controls__colors .controls__color {
+    /* 각각의 색상 박스들 */
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin-top: 10px;
+    cursor: pointer;
+}
+
 
 #complete {
     width: 506px;
@@ -42,35 +73,108 @@ body {
     margin-top: 62px;
 
     border-radius: 8px;
-    border: 1px solid #3173B0;
+    border: 1px solid var(--color3);
+
     background: var(--color3);
     color: var(--color1);
 
     text-align: center;
     font-family: 'omyu_pretty';
     font-size: 1.25rem;
-
     cursor: pointer;
+
+    position: absolute;
+    right: 8%;
+    top: 100%;
 }
+
+.controls__range {
+    position: absolute;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    /* left: 2%; */
+    top: 23%;
+    margin-left: -59px;
+    margin-top: 3px;
+}
+
 
 #pen {
     width: 68px;
     height: 68px;
     border-radius: 50px;
     background-color: var(--color1);
-    margin-bottom: 18px;
     border: 2px solid var(--color2);
     cursor: pointer;
-     
+
 }
 
 #eraser {
     width: 68px;
     height: 68px;
     border-radius: 50px;
-    background-color:var(--color1); 
+    background-color: var(--color1);
     border: 2px solid var(--color2);
     cursor: pointer;
 }
 
- 
+.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.show {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#pen:hover, #eraser:hover {
+    transform: scale(1.10);
+}
+
+
+
+.controls__colors .controls__color {
+    /* 기본적으로 숨겨진(hidden) 상태로 설정 */
+    display: flex;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.controls__colors .controls__color.show {
+    /* 보이는(show) 상태로 전환 */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 시험 */
+.controls__range {
+    position: absolute;
+    transform: rotate(-90deg);
+    width: 171px; /* 너비 조정 */
+    height: 40px; /* 높이 조정 */
+    background-color: var(--color1); /* 배경색 */
+    /* border: 2px solid #174488; */
+    box-shadow: 0px 0px 4.8px 1px rgba(0, 0, 0, 0.25);
+     /* 보더 색상 */
+    border-radius: 20px; /* 보더 반경 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#jsRange {
+    -webkit-appearance: none; 
+}
+
+#jsRange::-webkit-slider-thumb {
+    -webkit-appearance: none; /* 스타일링을 위해 기본 스타일링 제거 */
+    width: 28px; /* 슬라이더 썸 크기 */
+    height: 28px; /* 슬라이더 썸 크기 */
+    background: var(--color2); /* 슬라이더 썸 색상 */
+    border-radius: 50%; /* 슬라이더 썸 모양 */
+    cursor: pointer;
+}
