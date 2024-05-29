@@ -1,68 +1,79 @@
 const video = document.getElementById('video');
 
 if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({
-        video: true
-    })
-
-    .then(function (stream) {
-        video.srcObject = stream; // 성공적으로 비디오를 가져왔을 때 실행
-        video.onloadedmetadata = function () {
-            video.play();
-            startCountdown(); // 비디오 스트림이 시작된 후 카운트다운 시작
-        };
-    })
-
-    .catch(function (error) { // getUserMedia()를 실패 했을 때
-        alert("웹캠에 접근할 수 없습니다");
-    });
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+            video.srcObject = stream;
+            video.onloadedmetadata = function () {
+                video.play();
+                startCountdown();
+            };
+        })
+        .catch(function (error) {
+            alert("웹캠에 접근할 수 없습니다");
+        });
 }
 
 const countdownElement = document.getElementById('countdown');
-const countdownDuration = 3; // 카운트다운 시간(초)
+const countdownDuration = 3;
 let countdown = countdownDuration;
+const id = 'unique_id'; // 실제 동적인 id로 교체
 
 function startCountdown() {
+    countdown = countdownDuration; // 초기화
     const timer = setInterval(function () {
-        countdown--; // 3, 2, 1
+        countdown--;
         countdownElement.textContent = countdown;
-        
+
         if (countdown <= 0) {
             clearInterval(timer);
-            countdownElement.textContent = '찰칵'; // 카운트가 끝나면 찰칵이 나오게 하기
+            countdownElement.textContent = '찰칵';
             takeSnapshot();
         }
     }, 1000);
 }
 
 function takeSnapshot() {
-    const canvas = document.createElement('canvas'); //<canvas> 태그 생성
+    const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     const context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     const dataURL = canvas.toDataURL('image/jpeg');
-    console.log(dataURL);  
 
-    // 캡처된 이미지를 화면에 표시 
+    // 캡처된 이미지를 서버로 전송
+    fetch(`/image_paths/:id`, { //서버 주소 수정 해야 됨
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image: dataURL })
+        
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        console.log(dataURL);
+        // 2초 뒤에 다음 페이지로 이동
+        // setTimeout(goToNextPage, 2000);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+    // 캡처된 이미지를 화면에 표시
     const img = new Image();
     img.src = dataURL;
     document.body.appendChild(img);
-    console.log("take a picture");
 
-    //3초 후 사진 찍고 화면 멈춤
+    // 3초 후 사진 찍고 화면 멈춤
     video.pause();
-    const imgs = new Image();
-            img.src = dataURL;
-            document.body.appendChild(img);  
-              
-     // 2초뒤에 다음 페이지로 이동
-    setTimeout(goToNextPage,2000);
+    if (video.srcObject) {
+        let tracks = video.srcObject.getTracks();
+        tracks.forEach(track => track.stop());
+    }
 }
 
-    function goToNextPage(){
-        location.href = 'design.html';
-    }
-
-    
-    
+// function goToNextPage(){
+//     location.href = 'design.html';
+// }
