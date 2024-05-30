@@ -55,7 +55,7 @@ function takeSnapshot() {
         console.log(data);
         console.log(dataURL);
         // 2초 뒤에 다음 페이지로 이동
-        // setTimeout(goToNextPage, 2000);
+        setTimeout(goToNextPage, 2000);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -74,6 +74,6 @@ function takeSnapshot() {
     }
 }
 
-// function goToNextPage(){
-//     location.href = 'design.html';
-// }
+function goToNextPage(){
+    window.location.href = '/design';
+}
