@@ -18,6 +18,7 @@ app.set('view engine', 'ejs');
 const imagePathRouter = require('./routes/image_paths');
 const titlesRouter = require('./routes/titles');
 const broadsRouter = require('./routes/broads');
+const indexRouter = require('./routes/index');
 
 sequelize.sync()
   .then(() => {
@@ -44,11 +45,7 @@ app.use(session({
 app.use('/image_path', imagePathRouter);
 app.use('/titles', titlesRouter);
 app.use('/broads', broadsRouter);
-
-// 처음 화면 시작
-app.get('/', (req, res) => {
-  res.render('index');
-});
+app.use('/index', indexRouter);
 
 // 서버 실행
 app.listen(port, () => {
