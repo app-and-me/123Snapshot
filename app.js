@@ -20,7 +20,7 @@ const titlesRouter = require('./routes/titles');
 const broadsRouter = require('./routes/broads');
 const indexRouter = require('./routes/index');
 
-sequelize.sync()
+sequelize.sync({ force: true })
   .then(() => {
     console.log('Database synced')
   })
