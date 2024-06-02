@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('./index');
+// const sequelize = require('./index');
 
-const Letter = sequelize.define('letters', {
+const Letter = (sequelize) => sequelize.define('letters', {
   id: {
     type: DataTypes.BIGINT,
     primaryKey: true,       // 기본 키로 설정
