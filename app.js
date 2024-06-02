@@ -45,7 +45,7 @@ app.use(session({
 app.use('/image_path', imagePathRouter);
 app.use('/titles', titlesRouter);
 app.use('/broads', broadsRouter);
-app.use('/index', indexRouter);
+app.use('/', indexRouter);
 
 // 서버 실행
 app.listen(port, () => {
