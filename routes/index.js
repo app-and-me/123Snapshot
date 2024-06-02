@@ -16,11 +16,16 @@ router.get('/story', (req, res) => {
   res.render('story');
 });
 
-// 사용자 id 생성, 프론트로 전달
+// 새로운 사용자 id 생성, 프론트로 전달
 router.get('/newUserId', (req, res) => {
   res.json({ userId: currentUserId });   // 사용자 id 프론트로 보내기
   currentUserId += 1;   // 사용자 ID 증가
 });
+
+// 사용자 id 조회, 프론트로 전달
+router.get('/getUserId', (req, res) => {
+  res.json({ userId: currentUserId });
+})
 
 // 사용자 id값 DB에 저장
 router.post('/saveUserId', async (req, res) => {
