@@ -1,10 +1,16 @@
 const { DataTypes } = require('sequelize');
+const sequelize = require('./index');
 
 const Letter = (sequelize) => sequelize.define('letters', {
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
       autoIncrement: true,
+      allowNull: false
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
       allowNull: false
     },
     image_paths: {
@@ -17,9 +23,17 @@ const Letter = (sequelize) => sequelize.define('letters', {
     },
     yn: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true
     }
-})
+},
+    {
+      indexes : [
+        {
+          unique: true,
+          fields: ['id', 'userId']
+        }
+      ]
+  });
  
 module.exports = Letter;
   
