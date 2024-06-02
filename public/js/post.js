@@ -1,3 +1,3 @@
 setTimeout(function(){
-    window.location.href="index.ejs";  
+    window.location.href="/index";  
 },2500);
