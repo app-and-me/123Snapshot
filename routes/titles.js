@@ -5,10 +5,10 @@ const { Op } = require('sequelize');
 const router = express.Router();
 
 // 제목 저장
-router.post("/:id", async (req,res) => {
+router.post("/:userId", async (req,res) => {
     try {
         const text = await Letter.create({
-            id : req.params.id,
+            userId : req.params.userId,
             titles : req.body.message
         });
         if(text) {
