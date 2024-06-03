@@ -7,14 +7,14 @@ const fs = require('fs');
 const router = express.Router();
 
 // 이미지 조회
-router.get('/:id', async (req, res) => {
+router.get('/:userId', async (req, res) => {
     try {
         // id 파라미터 추출
-        const { id } = req.params
+        const { userId } = req.params
 
         // id에 해당하는 letter 모델 레코드 조회
         const letter = await Letter.findOne({
-            where: { id },
+            where: { userId },
             include: [{
                 association: 'image_paths', // 이미지 경로 필드명 확인
                 attribute: ['imagePath'],   // 이미지 경로만 조회
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
         });
 
         if (!letter) {
-            return res.status(404).json({ message: "해당 id의 이미지를 찾을 수 없습니다."})
+            return res.status(404).json({ message: "해당의 이미지를 찾을 수 없습니다."})
         }
 
         const imagePath = letter.image_paths[0].imagePath
@@ -36,9 +36,9 @@ router.get('/:id', async (req, res) => {
 })
 
 // 이미지 저장
-router.post('/:id', async (req,res) => {
+router.post('/:userId', async (req,res) => {
     try {
-        const {id} = req.params;
+        const { userId } = req.params;
         // const img = req.body.이미지경로가 저장된 곳;
         // titles 저장할 때의 id와 같은지 확인하고 이미지 경로 저장
 
@@ -51,9 +51,9 @@ router.post('/:id', async (req,res) => {
 })
 
 // 이미지 수정
-router.put('/:id', async (req,res) => {
+router.put('/:userId', async (req,res) => {
     try {
-        const {id} = req.params;
+        const { userId } = req.params;
         // 이미지 저장할 때의 id와 같은지 확인하고 이미지 경로 수정
         // if(id === )
         
