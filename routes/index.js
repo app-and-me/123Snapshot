@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 
 const router = express.Router();
 
-let currentUserId = 1;    // 현재 사용자 id 
+let currentUserId = 0;    // 현재 사용자 id 
 
 // 처음 화면 시작
 router.get('/', (req, res) => {
@@ -18,8 +18,8 @@ router.get('/story', (req, res) => {
 
 // 새로운 사용자 id 생성, 프론트로 전달
 router.get('/newUserId', (req, res) => {
-  res.json({ userId: currentUserId });   // 사용자 id 프론트로 보내기
   currentUserId += 1;   // 사용자 ID 증가
+  res.json({ userId: currentUserId });   // 사용자 id 프론트로 보내기
 });
 
 // 사용자 id 조회, 프론트로 전달
