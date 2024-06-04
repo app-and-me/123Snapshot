@@ -17,7 +17,14 @@ if (navigator.mediaDevices.getUserMedia) {
 const countdownElement = document.getElementById('countdown');
 const countdownDuration = 3;
 let countdown = countdownDuration;
-const id = 'unique_id'; // 실제 동적인 id로 교체
+ 
+
+// 새로운 사용자 id요청
+async function getUserId() {
+    const response = await fetch('/getUserId');
+    const data = await response.json();
+    return data.userId;
+}
 
 function startCountdown() {
     countdown = countdownDuration; // 초기화
@@ -34,6 +41,7 @@ function startCountdown() {
 }
 
 function takeSnapshot() {
+    const userId =  getUserId(); // 사용자 ID 요청
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
@@ -42,7 +50,7 @@ function takeSnapshot() {
     const dataURL = canvas.toDataURL('image/jpeg');
 
     // 캡처된 이미지를 서버로 전송
-    fetch(`/image_paths/:id`, { //서버 주소 수정 해야 됨
+    fetch(`/image_paths/${userId}`, { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -54,6 +62,7 @@ function takeSnapshot() {
     .then(data => {
         console.log(data);
         console.log(dataURL);
+
         // 2초 뒤에 다음 페이지로 이동
         setTimeout(goToNextPage, 2000);
     })
