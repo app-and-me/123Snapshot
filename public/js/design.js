@@ -5,10 +5,16 @@ const range = document.getElementById("jsRange");
 const imageLoader = document.getElementById("jsImageLoader");
 
 const INITIAL_COLOR = "#2c2c2c";
-const CANVAS_SIZE = 688;
+// const CANVAS_SIZE = 688;
 
-canvas.width = CANVAS_SIZE;
-canvas.height = CANVAS_SIZE;
+// canvas.width = CANVAS_SIZE;
+// canvas.height = CANVAS_SIZE;
+
+const CANVAS_WIDTH = 688; // 추가된 부분
+const CANVAS_HEIGHT = 746; // 추가된 부분
+
+canvas.width = CANVAS_WIDTH; // 수정된 부분
+canvas.height = CANVAS_HEIGHT;
 
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -96,7 +102,7 @@ function loadImage() {
 if (imageLoader) {
   imageLoader.addEventListener("change", handleImage);
 }
-
+//이미지 불러오기
 loadImage();
 
 const penButton = document.getElementById('pen');
@@ -122,8 +128,8 @@ penButton.addEventListener('click', () => {
         element.classList.toggle('show');
     });
 });
-//시험
 
+//캔버스 지우고 이미지 다시 불러옴
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "white"; 
@@ -133,5 +139,39 @@ function clearCanvas() {
 }
 
 eraser.addEventListener("click", clearCanvas);
+
+function sendDataToServer(dataURL) {
+  const base64Data = dataURL.split(',')[1];
+  
+  fetch('/upload', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ image: base64Data })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+
+//시험
+//일부만 캡처됨
+const completeButton = document.getElementById("complete");
+
+completeButton.addEventListener("click", () => {
+  // 캔버스의 내용을 이미지로 캡처
+  
+  // 캡처된 이미지의 URL 출력
+  console.log("Captured Image URL:", dataURL);
+  
+  // 서버에 데이터 전송 (해당 함수가 존재하지 않는 경우 주석 처리)
+  // sendDataToServer(dataURL);
+});
+
 
 
