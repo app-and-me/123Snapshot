@@ -1,6 +1,7 @@
 const express = require('express');
-const {Letter} = require('../models');
+// const {Letter} = require('../models');
 const { Op } = require('sequelize');
+const {Users} = require('./Users');     // Object를 불러옴
 
 const router = express.Router();
 
@@ -29,23 +30,24 @@ router.get('/getUserId', (req, res) => {
 
 // 사용자 id값 DB에 저장
 router.post('/saveUserId', async (req, res) => {
-  try {
-      const userId = req.body.userId;
+  Users = {"userId" : req.body.userId};
+  // try {
+  //     const userId = req.body.userId;
 
-      const user = await Letter.create({
-          userId: userId
-      });
+  //     const user = await Letter.create({
+  //         userId: userId
+  //     });
 
-      if (user) {
-          res.status(200).json({ "message":"사용자 ID 저장 성공" });
-      } else {
-          res.status(500).json({ "message":"사용자 ID 저장 실패" });
-      }
-  }
-  catch (error) {
-      console.log(error);
-      res.status(500).json({ "message":"서버 오류로 사용자 ID 저장 실패" });
-  }
+  //     if (user) {
+  //         res.status(200).json({ "message":"사용자 ID 저장 성공" });
+  //     } else {
+  //         res.status(500).json({ "message":"사용자 ID 저장 실패" });
+  //     }
+  // }
+  // catch (error) {
+  //     console.log(error);
+  //     res.status(500).json({ "message":"서버 오류로 사용자 ID 저장 실패" });
+  // }
 });
 
 // story에서 letter으로 이동
@@ -70,24 +72,31 @@ router.get('/write', (req, res) =>{
 
 // choose에서 yes/no -> /post, /notpost으로 이동
 router.post('/choose', (req, res) => {
-    try {
-        const {public} = req.body;
+  Users = {"yn" : req.body.public};
+
+  if(Users.yn == "yes")
+    res.render('post');
+  else(Users.yn == "no")
+    res.render('notpost');
+
+    // try {
+    //     const {public} = req.body;
     
-        if(public === 'yes') {
-            res.render('post');
-        }
-        else if(public === 'no'){
-            res.render('notpost');
-        }
-        else {
-            console.log(err);
-            return res.status(400).json({"message":"렌더링 실패 올바른 값이 아님"})
-        }
-    }
-    catch(err) {
-        console.log(err);
-        return res.status(500).json({"message":"서버오류로 렌더링 실패"})
-    }
+    //     if(public === 'yes') {
+    //         res.render('post');
+    //     }
+    //     else if(public === 'no'){
+    //         res.render('notpost');
+    //     }
+    //     else {
+    //         console.log(err);
+    //         return res.status(400).json({"message":"렌더링 실패 올바른 값이 아님"})
+    //     }
+    // }
+    // catch(err) {
+    //     console.log(err);
+    //     return res.status(500).json({"message":"서버오류로 렌더링 실패"})
+    // }
 
 })
 
