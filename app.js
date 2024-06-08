@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 // routes 만든 라우터 불러오기
 const imagePathRouter = require('./routes/image_paths');
 const titlesRouter = require('./routes/titles');
-const broadsRouter = require('./routes/broads');
+//const boardsRouter = require('./routes/boards');
 const indexRouter = require('./routes/index');
 
 sequelize.sync({ force: true })
@@ -44,7 +44,7 @@ app.use(session({
 // router
 app.use('/image_paths', imagePathRouter);
 app.use('/titles', titlesRouter);
-app.use('/broads', broadsRouter);
+//app.use('/boards', boardsRouter);
 app.use('/', indexRouter);
 
 // 서버 실행

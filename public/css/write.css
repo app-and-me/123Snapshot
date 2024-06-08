@@ -46,7 +46,7 @@ body {
     font-size: 0.85em;  
 }
 
-#finish{
+.finish{
     width: 506px;
     height: 52px;
     border-radius: 8px;
@@ -58,7 +58,7 @@ body {
     margin: 40px auto auto 100px;
 }
 
-#finish:hover{
+.finish:hover{
     background-color: var(--color3);
 }
 
