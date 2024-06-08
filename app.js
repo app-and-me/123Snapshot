@@ -42,7 +42,7 @@ app.use(session({
   
 
 // router
-app.use('/image_path', imagePathRouter);
+app.use('/image_paths', imagePathRouter);
 app.use('/titles', titlesRouter);
 app.use('/broads', broadsRouter);
 app.use('/', indexRouter);
