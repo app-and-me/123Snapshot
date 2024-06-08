@@ -41,3 +41,9 @@ document.querySelector('.photo').addEventListener('click', async (event) => {
         console.error("Error 발생: ", error);
     }
 });
+
+
+// 게시물 보기 버튼 클릭 이벤트 리스너 등록
+document.querySelector('.view-board').addEventListener('click', () => {
+    window.location.href = "/board"; // 게시물 보기 페이지로 이동
+});
