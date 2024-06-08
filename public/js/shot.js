@@ -1,4 +1,7 @@
 const video = document.getElementById('video');
+const countdownElement = document.getElementById('countdown');
+const countdownDuration = 3;
+let countdown = countdownDuration;
 
 if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true })
@@ -14,16 +17,15 @@ if (navigator.mediaDevices.getUserMedia) {
         });
 }
 
-const countdownElement = document.getElementById('countdown');
-const countdownDuration = 3;
-let countdown = countdownDuration;
- 
-
-// 새로운 사용자 id요청
 async function getUserId() {
-    const response = await fetch('/getUserId');
-    const data = await response.json();
-    return data.userId;
+    try {
+        const response = await fetch('/getUserId');
+        const data = await response.json();
+        // console.log("사용자 ID:", data.userId); // 콘솔에 사용자 ID 출력
+        return data.userId;
+    } catch (error) {
+        console.error("Error 발생: ", error);
+    }
 }
 
 function startCountdown() {
@@ -40,8 +42,8 @@ function startCountdown() {
     }, 1000);
 }
 
-function takeSnapshot() {
-    const userId =  getUserId(); // 사용자 ID 요청
+async function takeSnapshot() {
+    const userId = await getUserId(); // 사용자 ID 요청
     const canvas = document.createElement('canvas');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
@@ -49,31 +51,25 @@ function takeSnapshot() {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     const dataURL = canvas.toDataURL('image/jpeg');
 
-    // 캡처된 이미지를 서버로 전송
-    fetch(`/image_paths/${userId}`, { 
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ image: dataURL })
-        
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-        console.log(dataURL);
+    console.log("사용자 ID:", userId);
+    console.log("사진 URL:", dataURL);
 
-        // 2초 뒤에 다음 페이지로 이동
-        setTimeout(goToNextPage, 2000);
-    })
-    .catch(error => {
+    try {
+        const response = await fetch(`/image_paths/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                userId: userId,
+                imageUrl: dataURL 
+            })
+        });
+        const result = await response.text();
+        console.log("결과:", result);
+    } catch (error) {
         console.error('Error:', error);
-    });
-
-    // 캡처된 이미지를 화면에 표시
-    const img = new Image();
-    img.src = dataURL;
-    document.body.appendChild(img);
+    }
 
     // 3초 후 사진 찍고 화면 멈춤
     video.pause();
@@ -81,8 +77,10 @@ function takeSnapshot() {
         let tracks = video.srcObject.getTracks();
         tracks.forEach(track => track.stop());
     }
+
+    setTimeout(goToNextPage, 2000);
 }
 
-function goToNextPage(){
+function goToNextPage() {
     window.location.href = '/design';
 }
