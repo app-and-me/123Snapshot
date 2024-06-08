@@ -91,19 +91,41 @@ function handleImage(event) {
   reader.readAsDataURL(file);
 }
 
-function loadImage() {
-  const img = new Image();
-  img.onload = function () {
-    ctx.drawImage(img, 65, 40, 554, 505);
-  }
-  img.src = "../public/images/test.jpg";
+fetch('/getUserId')
+  .then(response => response.json()) 
+  .then(data => {
+    const userId = data.userId;
+    console.log('User ID:', userId);
+    loadImageFromServer(userId); // 이미지 로드 함수 호출
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+function loadImageFromServer(userId) {
+  fetch(`/image_paths/${userId}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const imagePath = data.imagePath;
+      const img = new Image();
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }
+      img.src = imagePath;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 }
 
-if (imageLoader) {
-  imageLoader.addEventListener("change", handleImage);
-}
-//이미지 불러오기
-loadImage();
+
+
+
 
 const penButton = document.getElementById('pen');
 const colorElements = document.querySelectorAll('.controls__color');
@@ -134,7 +156,7 @@ function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "white"; 
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  loadImage();
+  loadImageFromServer(userId);
   
 }
 
@@ -165,13 +187,9 @@ const completeButton = document.getElementById("complete");
 
 completeButton.addEventListener("click", () => {
   // 캔버스의 내용을 이미지로 캡처
+  const dataURL = canvas.toDataURL();
   
   // 캡처된 이미지의 URL 출력
-  console.log("Captured Image URL:", dataURL);
-  
-  // 서버에 데이터 전송 (해당 함수가 존재하지 않는 경우 주석 처리)
-  // sendDataToServer(dataURL);
+  console.log(dataURL);
+
 });
-
-
-
