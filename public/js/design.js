@@ -85,11 +85,16 @@ function handleImage(event) {
   reader.readAsDataURL(file);
 }
 
+// 사용자 id 받음
+const userId = await getUserId();
+
+// 여기 이미지 경로 수정할 것! (사용자 id값 보내기)
 function loadImage() {
   const img = new Image();
   img.onload = function () {
     ctx.drawImage(img, 65, 40, 554, 505);
   }
+
   img.src = "../public/images/test.jpg";
 }
 
