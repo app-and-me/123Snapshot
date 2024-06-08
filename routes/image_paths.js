@@ -9,10 +9,10 @@ const router = express.Router();
 // 이미지 경로 조회
 router.get('/:userId', async (req, res) => {
     try {
-        // id 파라미터 추출
+        // userId 파라미터 추출
         const { userId } = req.params
 
-        // id에 해당하는 letter 모델 레코드 조회
+        // userId에 해당하는 letter 모델 레코드 조회
         const letter = await Letter.findOne({
             where: { userId },
             include: [{
@@ -25,10 +25,11 @@ router.get('/:userId', async (req, res) => {
             return res.status(404).json({ message: "해당의 이미지를 찾을 수 없습니다."})
         }
 
-        const imagePath = letter.image_paths[0].imagePath
+        // 사용자에 대한 모든 이미지 경로 추출 및 반환
+        const imagePaths = letter.image_paths.map(image => image.imagePath);
         
         // 이미지 경로 반환
-        return res.status(200).json({ imagePath });
+        return res.status(200).json({ imagePaths });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "이미지 불러오기 실패" })
