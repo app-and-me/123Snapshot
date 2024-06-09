@@ -60,7 +60,7 @@ async function takeSnapshot() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
-                userId: userId,
+                // userId: userId,
                 imageUrl: dataURL 
             })
         });
