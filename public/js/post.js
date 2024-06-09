@@ -1,3 +1,3 @@
 setTimeout(function(){
-    window.location.href="/index";  
+    window.location.href="/board";  
 },2500);

@@ -21,7 +21,6 @@ async function getUserId() {
     try {
         const response = await fetch('/getUserId');
         const data = await response.json();
-        // console.log("사용자 ID:", data.userId); // 콘솔에 사용자 ID 출력
         return data.userId;
     } catch (error) {
         console.error("Error 발생: ", error);

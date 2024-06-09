@@ -70,39 +70,52 @@ router.get('/write', (req, res) =>{
   res.render('write');
 })
 
+router.get('/choose', (req, res)=>{
+  res.render('choose')
+})
+
+
+router.get('/post', (req, res) => {
+  res.render('post');
+});
+
+
+router.get('/notpost', (req, res) => {
+  res.render('notpost');
+});
+
+
+
 // choose에서 yes/no -> /post, /notpost으로 이동
-router.post('/choose', (req, res) => {
-  Users = {"yn" : req.body.public};
+ 
+router.post('/choose', (req, res) => { //res.render choose
+   
+    try {
+        const {public} = req.body;
+    console.log(public)
+        if(public === 'yes') {
+            res.render('post');
+        }
+        else if(public === 'no'){
+            res.render('notpost');
+        }
+        else {
+            console.log(err);
+            return res.status(400).json({"message":"렌더링 실패 올바른 값이 아님"})
+        }
+    }
+    catch(err) {
+        console.log(err);
+        return res.status(500).json({"message":"서버오류로 렌더링 실패"})
+    }
+ 
 
-  if(Users.yn == "yes")
-    res.render('post');
-  else(Users.yn == "no")
-    res.render('notpost');
-
-    // try {
-    //     const {public} = req.body;
-    
-    //     if(public === 'yes') {
-    //         res.render('post');
-    //     }
-    //     else if(public === 'no'){
-    //         res.render('notpost');
-    //     }
-    //     else {
-    //         console.log(err);
-    //         return res.status(400).json({"message":"렌더링 실패 올바른 값이 아님"})
-    //     }
-    // }
-    // catch(err) {
-    //     console.log(err);
-    //     return res.status(500).json({"message":"서버오류로 렌더링 실패"})
-    // }
 
 })
 
-// /post, /notpost으로 이동 3초 후 index으로 이동
-router.get(['/post', '/notpost'], (req, res) => {
-  res.render('index');
+
+router.get('/board', (req, res) => {
+  res.render('board');
 });
 
 // app.js에서 사용할 수 있도록 내보냄

@@ -1,0 +1,99 @@
+body{
+    background-image: url(../images/bg1.png);
+    background-size: cover;  
+    overflow: hidden;  
+    width: 100vw;   
+    height: 100vh;   
+}
+
+#btn-prev,
+ #btn-next{
+    width: 87px;
+    height: 87px;
+    background-color: var(--color1);
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;  
+ }
+
+ #btn-prev{
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    padding: 19px 26px 20px 25px;
+ }
+
+ #btn-next{
+    position: absolute;
+    top: 50%;
+    right: 2%;
+ }
+
+ /* #output {
+    display: flex;
+    font-size: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+#output p {
+    margin: 0 10px; /* 숫자들 사이의 간격 조정 */
+}
+ 
+#pin-container{
+    margin: 180px 0 207px 0;
+}
+ 
+.pin{
+    position: absolute;
+    width: 1935.5px;
+    height: 266.713px;
+    z-index: 1;
+}
+.polaroid1, .polaroid2, .polaroid3{
+    position: absolute;
+    width: 438px;
+    height: 456px;
+    z-index: 0;
+}
+
+.polaroid1{
+    top: 35%;
+    left: 8%;
+    transform: rotate(8.161deg);
+}
+
+.polaroid2{
+    top: 41%;
+    left: 39%; 
+}
+
+.polaroid3{
+    top: 36.5%;
+    right: 9%;
+    transform: rotate(-5.801deg);
+}
+.exhibition1, .exhibition2, .exhibition3{
+    position: absolute;
+    width: 352px;
+    height: 322px;
+}
+.exhibition1{
+    top: 39%;
+    left: 10.3%;
+    transform: rotate(188deg);
+    transform-origin: 50% 50%;  
+}
+
+.exhibition2{
+    top: 44%;
+    left: 41.2%;    
+}
+
+.exhibition3{
+    top: 40%;
+    right: 11.4%;
+    transform: rotate(-6deg);
+}

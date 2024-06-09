@@ -22,7 +22,7 @@ body {
     color: var(--color2);
 }
 
-#public, #private{
+#public-button, #private-button{
     width: 502px;
     height: 91px;
 
