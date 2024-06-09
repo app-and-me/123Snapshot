@@ -185,12 +185,22 @@ penButton.addEventListener('click', () => {
 //일부만 캡처됨
 const completeButton = document.getElementById("complete");
 
-completeButton.addEventListener("click", () => {
+completeButton.addEventListener("click", async () => {
   // 캔버스의 내용을 이미지로 캡처
   const dataURL = canvas.toDataURL();
   
   // 캡처된 이미지의 URL 출력
   console.log(dataURL);
+
+  const res = await fetch(`image_paths/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ newImageData : dataURL }) 
+  })
+
+  console.log("이미지 수정 결과 : " + res);
 
   window.location.href = "/write";
 
