@@ -107,7 +107,7 @@ body{
 .home-container {
     display: flex;
     position: absolute;  
-    top: 52px; 
+    top: 88px; 
     left: 197px;  
     cursor: pointer;
 }
