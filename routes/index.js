@@ -89,6 +89,7 @@ router.get('/notpost', (req, res) => {
 router.post('/choose/:userId', async (req, res) => { 
     try {
         const { yn } = req.body;
+        const { userId } = req.params;
 
         if(yn == 'yes') {
           answer = true;
