@@ -1,5 +1,5 @@
 // 새로운 사용자 id요청
-async function getNewUserId() {
+async function newUserId() {
     const response = await fetch('/newUserId');
     const data = await response.json();
     return data.userId;
@@ -7,10 +7,10 @@ async function getNewUserId() {
 
 // 사용자 id 조회
 async function getUserId() {
-    const response = await fetch('/getUserId'); // URL 수정
+    const response = await fetch('/getUserId');
     const data = await response.json();
     return data.userId;
-}
+  }
     
 // 사용자 id를 서버에 저장
 async function saveUserId(userId) {
@@ -30,7 +30,7 @@ document.querySelector('.photo').addEventListener('click', async (event) => {
     event.preventDefault();     // 기본 링크 동작을 막음
 
     try {
-        const userId = await getNewUserId();    // id를 받음
+        const userId = await newUserId();    // id를 받음
         console.log(userId);       // console에서 test
         const result = await saveUserId(userId);    // 서버에 id를 저장
         console.log(result);
@@ -40,12 +40,19 @@ document.querySelector('.photo').addEventListener('click', async (event) => {
     catch(error) {
         console.error("Error 발생: ", error);
     }
+
 });
+
+
+
+
+
 
 
 // 게시물 보기 버튼 클릭 이벤트 리스너 등록
-document.querySelector('.view-board').addEventListener('click', () => {
-    window.location.href = "/board"; // 게시물 보기 페이지로 이동
-});
 
- 
+document.querySelector('.view-board').addEventListener('click', () => {
+
+    window.location.href = "/board"; // 게시물 보기 페이지로 이동
+
+});

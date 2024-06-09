@@ -64,17 +64,13 @@ const totalPages = Math.ceil(totalPhotos / photosPerPage);
 
 // 페이지 표시 함수
 function displayPage(pageNumber) {
-    // 데이터 불러오기
-    const res = getPaginationImages(pageNumber)
-    console.log(res)
-
     // 페이지 번호에 맞게 사진을 표시하는 기능을 구현해야 하지만 여기서는 임의의 텍스트로 대체합니다.
     const photos = [];
     for (let i = 0; i < photosPerPage; i++) {
-        photos.push(`<p> ${pageNumber * photosPerPage - photosPerPage + i + 1}</p>`);
+        photos.push(`<p>Photo ${pageNumber * photosPerPage - photosPerPage + i + 1}</p>`);
     }
-     console.log(`Page ${pageNumber}:`, photos);
-   // outputDiv.innerHTML = photos.join(''); // 출력 부분 업데이트
+    console.log(`Page ${pageNumber}:`, photos);
+    // outputDiv.innerHTML = photos.join(''); // 출력 부분 업데이트
 }
 
 // 초기 페이지 표시
@@ -103,10 +99,9 @@ window.onload = () =>{
     const outputDiv = document.getElementById('output')
     outputDiv.innerHTML = ''; // 출력 부분 초기화
 
-// 왼쪽 버튼 클릭 시 이전 페이지로 이동
-document.getElementById('btn-prev').addEventListener('click', goToPreviousPage);
+    // 왼쪽 버튼 클릭 시 이전 페이지로 이동
+    document.getElementById('btn-prev').addEventListener('click', goToPreviousPage);
 
-// 오른쪽 버튼 클릭 시 다음 페이지로 이동
-document.getElementById('btn-next').addEventListener('click', goToNextPage);
-
+    // 오른쪽 버튼 클릭 시 다음 페이지로 이동
+    document.getElementById('btn-next').addEventListener('click', goToNextPage);
 }
