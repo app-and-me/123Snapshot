@@ -1,5 +1,5 @@
 const express = require('express');
-// const {Letter} = require('../models');
+const {Letter} = require('../models');
 const { Op } = require('sequelize');
 const {Users} = require('./Users');     // Object를 불러옴
 
@@ -22,7 +22,7 @@ router.get('/getUserId', (req, res) => {
 
 // 사용자 id값 DB에 저장
 router.post('/saveUserId', async (req, res) => {
-  Users = {"userId" : req.body.userId};
+  // Users = {"userId" : req.body.userId};
   try {
       const userId = req.body.userId;
 
@@ -110,8 +110,6 @@ router.post('/choose', (req, res) => { //res.render choose
         console.log(err);
         return res.status(500).json({"message":"서버오류로 렌더링 실패"})
     }
- 
-
 
 })
 
