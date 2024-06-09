@@ -40,14 +40,14 @@ router.get('/:userId', async (req, res) => {
 router.post('/:userId', async (req,res) => {
     try {
         const { userId } = req.params;
-        const { image } = req.body;       // 프론트에서 받은 이미지 데이터
+        const { imageUrl } = req.body;       // 프론트에서 받은 이미지 데이터
 
         // 파일 저장 경로 설정
         const filename = `${userId}-${Date.now()}.jpg`;
         const filePath = path.join(__dirname, '../usersPhotos', filename);
 
         // Base64 데이터를 파일로 저장
-        fs.writeFileSync(filePath, image.split(';base64,').pop(), {encoding: 'base64'});
+        fs.writeFileSync(filePath, imageUrl.split(';base64,').pop(), {encoding: 'base64'});
 
         const letter = await Letter.create({
             image_paths : filePath
