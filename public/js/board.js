@@ -1,53 +1,4 @@
-//const { Letter } = require("../../models");
-
-/*
-async function getPaginationImages(currentPage) {
-    try {
-      const page = parseInt(currentPage) || 1; // 요청된 페이지. 기본값은 1
-      const perPage = 3; // 페이지당 항목 수
-
-      // 시작 인덱스 계산
-      const startIndex = (page - 1) * perPage;
-      
-      // yn이 1인, 공개된 사진 및 title만 검색
-      const [image_paths, titles] = await Promise.all([
-        Letter.findAll({ 
-          where: { yn: 1 },
-          offset: startIndex, 
-          limit: perPage }),
-        Letter.findAll({ 
-          where: { yn: 1 },
-          offset: startIndex, 
-          limit: perPage }),
-      ]);
-  
-      // 공개된 항목 총 사진 및 글 개수 가져오기
-      const [imageTotalCount, titleTotalCount] = await Promise.all([
-        image_paths.count({ where: { yn: 1 }}),
-        titles.count({ where: { yn: 1 }}),
-      ]);
-  
-      // 결과 객체 준비
-      // results ={image_paths, titles, imageTotalCount, titleTotalCount}
-      const results = {
-        image_paths: ['img1.png', 'img2.png', 'img3.png'],
-        titles: ['img1', 'img2', 'img3'],
-        imageTotalCount: 100,
-        titleTotalCount: 100,
-      }
-  
-      //if (image_paths.length > 0 || titles.length > 0) {
-        return res.status(200).json({ message: "페이징된 사진 및 글 목록 불러오기 성공", results });
-      //} else {
-      //  return res.status(400).json({ message: "페이징된 사진 및 글 목록 불러오기 실패" });
-      //}
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "페이징된 사진 및 글 목록 불러오기 실패" });
-    }
-  };
-
-*/
+ 
 
 // 페이지 인덱스 변수
 let currentPage = 1;
@@ -105,3 +56,13 @@ window.onload = () =>{
     // 오른쪽 버튼 클릭 시 다음 페이지로 이동
     document.getElementById('btn-next').addEventListener('click', goToNextPage);
 }
+
+ document.addEventListener('DOMContentLoaded', (event) =>{
+    const goHome = ()=>{
+        window.location.href = '/'
+    }
+    document.getElementById('goHomeButton').addEventListener('click',goHome);
+    document.getElementById('goHomeText').addEventListener('click',goHome);
+ });
+
+ 

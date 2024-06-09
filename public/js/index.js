@@ -31,7 +31,7 @@ document.querySelector('.photo').addEventListener('click', async (event) => {
 
     try {
         const userId = await newUserId();    // id를 받음
-        console.log(userId);       // console에서 test
+        console.log("초기 사용자 id : " + userId);       // console에서 test
         const result = await saveUserId(userId);    // 서버에 id를 저장
         console.log(result);
 
