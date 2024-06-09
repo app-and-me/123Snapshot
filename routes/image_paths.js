@@ -15,14 +15,12 @@ router.get('/:userId', async (req, res) => {
         // userId에 해당하는 letter 모델 레코드 조회
         const letter = await Letter.findOne({
             where: { userId },
-            include: [{
-                association: 'image_paths', // 이미지 경로 필드명 확인
-                attribute: ['imagePath'],   // 이미지 경로만 조회
-            }],
+            attributes: ['image_paths'] // 이미지 경로 필드만 선택
         });
 
+        // 만약 letter가 null이면 해당 이미지를 찾을 수 없음을 반환
         if (!letter) {
-            return res.status(404).json({ message: "해당의 이미지를 찾을 수 없습니다."})
+            return res.status(404).json({ message: "해당 이미지를 찾을 수 없습니다."})
         }
 
         // 사용자에 대한 모든 이미지 경로 추출 및 반환
