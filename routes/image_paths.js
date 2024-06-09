@@ -20,14 +20,11 @@ router.get('/:userId', async (req, res) => {
 
         // 만약 letter가 null이면 해당 이미지를 찾을 수 없음을 반환
         if (!letter) {
-            return res.status(404).json({ message: "해당 이미지를 찾을 수 없습니다."})
+            return res.status(404).json({ message: "해당 이미지를 찾을 수 없습니다." })
         }
 
-        // 사용자에 대한 모든 이미지 경로 추출 및 반환
-        const imagePaths = letter.image_paths.map(image => image.imagePath);
-        
         // 이미지 경로 반환
-        return res.status(200).json({ imagePaths });
+        return res.status(200).json({ imagePaths: letter.image_paths });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "이미지 불러오기 실패" })
