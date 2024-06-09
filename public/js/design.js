@@ -24,6 +24,7 @@ ctx.lineWidth = 3;
 
 let painting = false;
 let filling = false;
+let userId = null; // 전역 변수로 설정
 
 function stopPainting() {
   painting = false;
@@ -94,7 +95,7 @@ function handleImage(event) {
 fetch('/getUserId')
   .then(response => response.json()) 
   .then(data => {
-    const userId = data.userId;
+    userId = data.userId;
     console.log('User ID:', userId);
     loadImageFromServer(userId); // 이미지 로드 함수 호출
   })
@@ -106,8 +107,7 @@ function loadImageFromServer(userId) {
   fetch(`/image_paths/${userId}`)
     .then(response => {
       if (!response.ok) {
-        // throw new Error('Network response was not ok');
-        // 사용자가 사이트에서 존재하지 않는 URL을 탐색했을 때 발생 404에러
+        throw new Error('Network response was not ok');
       }
       return response.json();
     })
@@ -124,9 +124,37 @@ function loadImageFromServer(userId) {
     });
 }
 
+function clearCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white"; 
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if (userId) { // userId가 정의된 경우에만 loadImageFromServer 호출
+    loadImageFromServer(userId);
+  } else {
+    console.error('User ID is not defined.');
+  }
+}
 
+eraser.addEventListener("click", clearCanvas);
 
-
+function sendDataToServer(dataURL) {
+  const base64Data = dataURL.split(',')[1];
+  
+  fetch('/upload', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ image: base64Data })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
 
 const penButton = document.getElementById('pen');
 const colorElements = document.querySelectorAll('.controls__color');
@@ -151,36 +179,6 @@ penButton.addEventListener('click', () => {
         element.classList.toggle('show');
     });
 });
-
-//캔버스 지우고 이미지 다시 불러옴
-function clearCanvas() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "white"; 
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  loadImageFromServer(userId);
-  
-}
-
-eraser.addEventListener("click", clearCanvas);
-
-function sendDataToServer(dataURL) {
-  const base64Data = dataURL.split(',')[1];
-  
-  fetch('/upload', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ image: base64Data })
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Success:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-}
 
 
 //시험
