@@ -106,7 +106,8 @@ function loadImageFromServer(userId) {
   fetch(`/image_paths/${userId}`)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        // throw new Error('Network response was not ok');
+        // 사용자가 사이트에서 존재하지 않는 URL을 탐색했을 때 발생 404에러
       }
       return response.json();
     })
@@ -181,6 +182,7 @@ function sendDataToServer(dataURL) {
   });
 }
 
+
 //시험
 //일부만 캡처됨
 const completeButton = document.getElementById("complete");
@@ -191,5 +193,7 @@ completeButton.addEventListener("click", () => {
   
   // 캡처된 이미지의 URL 출력
   console.log(dataURL);
+
+  window.location.href = "/write";
 
 });
