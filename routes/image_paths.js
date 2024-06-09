@@ -49,17 +49,24 @@ router.post('/:userId', async (req,res) => {
         // Base64 데이터를 파일로 저장
         fs.writeFileSync(filePath, imageUrl.split(';base64,').pop(), {encoding: 'base64'});
 
-        const letter = await Letter.create({
-            image_paths : filePath
-        })
+        const [updated] = await Letter.update(      // filePath값을 받음
+            { image_paths: filePath },
+            { where: { userId: userId } }
+        );
 
-        return res.status(200).json({message:"이미지 저장 성공"});
+        if(updated) {
+            return res.status(200).json({message:"이미지 저장 성공"});
+        }
+        else {
+            return res.status(404).json({message :"(업데이트) 저장할 곳을 찾을 수 없음"});
+        }
+        
     }
     catch(error) {
         console.log(error);
         return res.status(500).json({message:"서버 오류로 이미지 저장 실패"});
     }
-})
+});
 
 // 이미지 경로 수정
 router.put('/:userId', async (req,res) => {
@@ -87,7 +94,7 @@ router.put('/:userId', async (req,res) => {
         fs.writeFileSync(filePath, newImageData.split(';base64,').pop(), {encoding: 'base64'});
 
         // 데이터베이스에 이미지 경로 업데이트
-        await letter.update({ imagePath: filePath });
+        await letter.update({ image_paths: filePath });
 
         return res.status(200).json({message: "이미지 수정 성공", updatedImagePath: filePath});
     }
