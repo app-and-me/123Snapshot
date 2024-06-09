@@ -115,7 +115,7 @@ function loadImageFromServer(userId) {
       const imagePath = data.imagePath;
       const img = new Image();
       img.onload = function () {
-        ctx.drawImage(img, 65, 40, 554, 505);
+        ctx.drawImage(img, 67, 50, 554, 505);
       }
       img.src = imagePath;
     })
