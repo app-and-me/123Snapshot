@@ -1,3 +1,3 @@
 setTimeout(function(){
-    window.location.href="/board";  
-},2500);
+    window.location.href="/";  
+},4000);
