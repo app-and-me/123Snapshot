@@ -1,5 +1,5 @@
 window.onload = () => {
-    console.log('test')
+    // console.log('test')
     const publicButton = document.getElementById('public-button');
     const privateButton = document.getElementById('private-button');
 
