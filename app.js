@@ -29,7 +29,11 @@ sequelize.sync({ force: true })
   });
 
 app.use(cors());
+
+// 정적파일 제공 설정
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/usersPhotos', express.static(path.join(__dirname, 'usersPhotos')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(require('cookie-parser')());
