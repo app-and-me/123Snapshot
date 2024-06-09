@@ -44,8 +44,8 @@ router.post('/:userId', async (req,res) => {
         // Base64 데이터를 파일로 저장
         fs.writeFileSync(filePath, imageUrl.split(';base64,').pop(), {encoding: 'base64'});
 
-        const [updated] = await Letter.update(      // filePath값을 받음
-            { image_paths: filePath },
+        const [updated] = await Letter.update(      
+            { image_paths: `/usersPhotos/${filename}` },    // 접근할 수 있는 경로로 수정
             { where: { userId: userId } }
         );
 
@@ -81,15 +81,15 @@ router.put('/:userId', async (req,res) => {
         const filePath = path.join(__dirname, '../usersPhotos', filename);      // 파일 경로 생성
 
         // 기존 파일 삭제
-        if (fs.existsSync(letter.image_paths)) {    // 기존 파일이 존재하는지 확인
-            fs.unlinkSync(letter.image_paths);      // 기존 파일을 삭제
+        if (fs.existsSync(path.join(__dirname, '..', letter.image_paths))) {    // 기존 파일이 존재하는지 확인
+            fs.unlinkSync(path.join(__dirname, '..', letter.image_paths));      // 기존 파일을 삭제
         }
 
         // 새 이미지 데이터를 파일로 저장
         fs.writeFileSync(filePath, newImageData.split(';base64,').pop(), {encoding: 'base64'});
 
         // 데이터베이스에 이미지 경로 업데이트
-        await letter.update({ image_paths: filePath });
+        await letter.update({ image_paths: `/usersPhotos/${filename}` });       //  // 접근할 수 있는 경로로 수정
 
         return res.status(200).json({message: "이미지 수정 성공", updatedImagePath: filePath});
     }
