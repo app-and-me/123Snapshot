@@ -7,10 +7,10 @@ async function getNewUserId() {
 
 // 사용자 id 조회
 async function getUserId() {
-    const response = await fetch('/getUserld');
+    const response = await fetch('/getUserId'); // URL 수정
     const data = await response.json();
     return data.userId;
-  }
+}
     
 // 사용자 id를 서버에 저장
 async function saveUserId(userId) {
@@ -47,3 +47,5 @@ document.querySelector('.photo').addEventListener('click', async (event) => {
 document.querySelector('.view-board').addEventListener('click', () => {
     window.location.href = "/board"; // 게시물 보기 페이지로 이동
 });
+
+ 

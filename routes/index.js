@@ -7,15 +7,7 @@ const router = express.Router();
 
 let currentUserId = 0;    // 현재 사용자 id 
 
-// 처음 화면 시작
-router.get('/', (req, res) => {
-  res.render('index');
-});
-
-// index.ejs에서 story로 이동
-router.get('/story', (req, res) => {
-  res.render('story');
-});
+ 
 
 // 새로운 사용자 id 생성, 프론트로 전달
 router.get('/newUserId', (req, res) => {
@@ -31,23 +23,33 @@ router.get('/getUserId', (req, res) => {
 // 사용자 id값 DB에 저장
 router.post('/saveUserId', async (req, res) => {
   Users = {"userId" : req.body.userId};
-  // try {
-  //     const userId = req.body.userId;
+  try {
+      const userId = req.body.userId;
 
-  //     const user = await Letter.create({
-  //         userId: userId
-  //     });
+      const user = await Letter.create({
+          userId: userId
+      });
 
-  //     if (user) {
-  //         res.status(200).json({ "message":"사용자 ID 저장 성공" });
-  //     } else {
-  //         res.status(500).json({ "message":"사용자 ID 저장 실패" });
-  //     }
-  // }
-  // catch (error) {
-  //     console.log(error);
-  //     res.status(500).json({ "message":"서버 오류로 사용자 ID 저장 실패" });
-  // }
+      if (user) {
+          res.status(200).json({ "message":"사용자 ID 저장 성공" });
+      } else {
+          res.status(500).json({ "message":"사용자 ID 저장 실패" });
+      }
+  }
+  catch (error) {
+      console.log(error);
+      res.status(500).json({ "message":"서버 오류로 사용자 ID 저장 실패" });
+  }
+});
+
+// 처음 화면 시작
+router.get('/', (req, res) => {
+  res.render('index');
+});
+
+// index.ejs에서 story로 이동
+router.get('/story', (req, res) => {
+  res.render('story');
 });
 
 // story에서 letter으로 이동
