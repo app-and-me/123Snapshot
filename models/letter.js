@@ -10,7 +10,7 @@ const Letter = (sequelize) => sequelize.define('letters', {
   },
   userId: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: true
   },
   image_paths: {
     type: DataTypes.STRING(255),

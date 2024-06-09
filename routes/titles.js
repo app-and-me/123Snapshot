@@ -7,8 +7,15 @@ const router = express.Router();
 // 제목 저장
 router.post("/:userId", async (req,res) => {
     try {
-        const text = await Letter.create({ titles : req.body.message });    // message를 받아옴
-        if(text) {
+        const { userId } = req.params;
+        const { message } = req.body;
+
+        const [updated] = await Letter.update(      // message값을 받음
+            { titles : message },
+            { where : { userId : userId } }
+        );    
+
+        if(updated) {
             res.render('choose');
             // res.status(200).json({message:"메세지 저장 성공"});          // render 이후는 실행되지 않음
         }

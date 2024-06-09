@@ -1,7 +1,7 @@
 const express = require('express');
 const {Letter} = require('../models');
 const { Op } = require('sequelize');
-const {Users} = require('./Users');     // Object를 불러옴
+// const qs = require('querystring');
 
 const router = express.Router();
 
@@ -22,7 +22,6 @@ router.get('/getUserId', (req, res) => {
 
 // 사용자 id값 DB에 저장
 router.post('/saveUserId', async (req, res) => {
-  // Users = {"userId" : req.body.userId};
   try {
       const userId = req.body.userId;
 
@@ -31,14 +30,14 @@ router.post('/saveUserId', async (req, res) => {
       });
 
       if (user) {
-          res.status(200).json({ "message":"사용자 ID 저장 성공" });
+          res.status(200).json({ message : "사용자 ID 저장 성공" });
       } else {
-          res.status(500).json({ "message":"사용자 ID 저장 실패" });
+          res.status(500).json({ message : "사용자 ID 저장 실패" });
       }
   }
   catch (error) {
       console.log(error);
-      res.status(500).json({ "message":"서버 오류로 사용자 ID 저장 실패" });
+      res.status(500).json({ message : "서버 오류로 사용자 ID 저장 실패" });
   }
 });
 
@@ -87,28 +86,33 @@ router.get('/notpost', (req, res) => {
 });
 
 
-
-// choose에서 yes/no -> /post, /notpost으로 이동
- 
-router.post('/choose', (req, res) => { //res.render choose
-   
+router.post('/choose/:userId', async (req, res) => { 
     try {
-        const {public} = req.body;
-    console.log(public)
-        if(public === 'yes') {
-            res.render('post');
+        const { yn } = req.body;
+
+        if(yn == 'yes') {
+          answer = true;
         }
-        else if(public === 'no'){
-            res.render('notpost');
+        else {
+          answer = false;
+        }
+
+        const [updated] = await Letter.update(
+          { yn : answer },
+          { where : { userId : userId } }
+        )
+
+        if(updated) {
+            return res.status(400).json({ message : "게시여부 저장 성공" })
         }
         else {
             console.log(err);
-            return res.status(400).json({"message":"렌더링 실패 올바른 값이 아님"})
+            return res.status(400).json({ message : "게시여부 저장 실패" })
         }
     }
     catch(err) {
         console.log(err);
-        return res.status(500).json({"message":"서버오류로 렌더링 실패"})
+        return res.status(500).json({ message : "서버오류로 게시여부 저장 실패" })
     }
 
 })
