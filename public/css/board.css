@@ -53,8 +53,8 @@ body{
 }
 .polaroid1, .polaroid2, .polaroid3{
     position: absolute;
-    width: 438px;
-    height: 456px;
+    width: 425px;
+    height: 442.5px;
     z-index: 0;
 }
 
@@ -74,29 +74,7 @@ body{
     right: 9%;
     transform: rotate(-5.801deg);
 }
-.exhibition1, .exhibition2, .exhibition3{
-    position: absolute;
-    width: 352px;
-    height: 322px;
-}
-.exhibition1{
-    top: 39%;
-    left: 10.3%;
-    transform: rotate(188deg);
-    transform-origin: 50% 50%;  
-}
-
-.exhibition2{
-    top: 44%;
-    left: 41.2%;    
-}
-
-.exhibition3{
-    top: 40%;
-    right: 11.4%;
-    transform: rotate(-6deg);
-}
-
+ 
 .home-container {
     display: flex;
     position: absolute;  
@@ -126,8 +104,8 @@ body{
 
 #output img{
     position: absolute;
-    width: 438px;
-    height: 456px;
+    width: 425px;
+    height: 442.5px;
     z-index: 0;
 }
 
