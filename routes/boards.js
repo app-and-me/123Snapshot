@@ -1,6 +1,7 @@
 const express = require('express');
 const { Letter } = require("../models");
 const router = express.Router();
+const { Op } = require('sequelize');
 
 // 게시판 페이지에 사진, 글 각각 세 개씩 보여주는 get 메소드
 router.get('/board', async (req, res) => {
@@ -12,21 +13,23 @@ router.get('/board', async (req, res) => {
       const startIndex = (page - 1) * perPage;
 
       // 공개된 사진 및 title만 검색
-      const [image_paths, titles] = await Promise.all([
-        image_paths.findAll({ 
+      const [imagePaths, titles] = await Promise.all([
+        Letter.findAll({ 
           where: { yn: 1 },
+          attributes: ['image_paths'],
           offset: startIndex, 
           limit: perPage }),
-        titles.findAll({ 
+        Letter.findAll({ 
           where: { yn: 1 },
+          attributes: ['titles'],
           offset: startIndex, 
           limit: perPage }),
       ]);
 
       // 공개된 항목 총 사진 및 글 개수 가져오기
       const [imageTotalCount, titleTotalCount] = await Promise.all([
-        image_paths.count({ where: { yn: 1 }}),
-        titles.count({ where: { yn: 1 }}),
+        Letter.count({ where: { yn: 1, image_paths: { [Op.not]: null } }}),
+        Letter.count({ where: { yn: 1, titles: { [Op.not]: null } }}),
       ]);
 
       // 결과 객체 준비
@@ -49,15 +52,8 @@ router.get('/board', async (req, res) => {
         };
       }
 
-      if (startIndex > 0) {
-        results.previous = {
-          page: page - 1,
-          perPage: perPage
-        };
-      }
-
-      if (image_paths.length > 0 || titles.length > 0) {
-        return res.status(200).json({ message: "페이징된 사진 및 글 목록 불러오기 성공", image_paths, titles, pagination: results });
+      if (imagePaths.length > 0 || titles.length > 0) {
+        return res.status(200).json({ message: "페이징된 사진 및 글 목록 불러오기 성공", imagePaths, titles, pagination: results });
       } else {
         return res.status(400).json({ message: "페이징된 사진 및 글 목록 불러오기 실패" });
       }
@@ -68,6 +64,4 @@ router.get('/board', async (req, res) => {
   });
 
 // app.js에서 사용할 수 있도록 내보냄
-module.exports = router;  
-
-
+module.exports = router;
