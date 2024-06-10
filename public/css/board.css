@@ -35,14 +35,7 @@ body{
     right: 2%;
  }
 
- /* #output {
-    display: flex;
-    font-size: 80px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-} */
+
 
 #output p {
     margin: 0 10px; /* 숫자들 사이의 간격 조정 */
@@ -60,50 +53,28 @@ body{
 }
 .polaroid1, .polaroid2, .polaroid3{
     position: absolute;
-    width: 438px;
-    height: 456px;
+    width: 425px;
+    height: 442.5px;
     z-index: 0;
 }
 
-.polaroid1{
-    top: 35%;
+.polaroid1, #output img{
+    top: 33%;
     left: 8%;
     transform: rotate(8.161deg);
 }
 
 .polaroid2{
-    top: 41%;
+    top: 38%;
     left: 39%; 
 }
 
 .polaroid3{
-    top: 36.5%;
+    top: 34%;
     right: 9%;
     transform: rotate(-5.801deg);
 }
-.exhibition1, .exhibition2, .exhibition3{
-    position: absolute;
-    width: 352px;
-    height: 322px;
-}
-.exhibition1{
-    top: 39%;
-    left: 10.3%;
-    transform: rotate(188deg);
-    transform-origin: 50% 50%;  
-}
-
-.exhibition2{
-    top: 44%;
-    left: 41.2%;    
-}
-
-.exhibition3{
-    top: 40%;
-    right: 11.4%;
-    transform: rotate(-6deg);
-}
-
+ 
 .home-container {
     display: flex;
     position: absolute;  
@@ -118,7 +89,6 @@ body{
     font-size: 2.3rem;
     margin-left: 10px;
     margin-top: 3px;
-    
 }
 
 .bi{
@@ -126,7 +96,26 @@ body{
     color: #174488;
 }
 
- 
+#output{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
+#output img{
+    position: absolute;
+    width: 425px;
+    height: 442.5px;
+    z-index: 0;
+}
+
+.title{
+    font-size: 2rem;
+    font-family: 'omyu_pretty';
+    position: absolute;
+    top: 64%;
+    left: 10%;
+    transform: rotate(8.161deg);
+}
 
 
