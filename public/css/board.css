@@ -4,86 +4,108 @@
     font-weight: 400;
     font-style: normal;
 }
-body{
+
+body {
     background-image: url(../images/bg1.png);
-    background-size: cover;  
-    overflow: hidden;  
-    width: 100vw;   
-    height: 100vh;   
+    background-size: cover;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
 }
 
-#btn-prev,
- #btn-next{
+#btn-prev, #btn-next {
     width: 87px;
     height: 87px;
     background-color: var(--color1);
     border-radius: 100%;
     border: none;
-    cursor: pointer;  
- }
+    cursor: pointer;
+}
 
- #btn-prev{
+#btn-prev {
     position: absolute;
     top: 50%;
     left: 2%;
     padding: 19px 26px 20px 25px;
- }
+}
 
- #btn-next{
+#btn-next {
     position: absolute;
     top: 50%;
     right: 2%;
- }
-
-
-
-#output p {
-    margin: 0 10px; /* 숫자들 사이의 간격 조정 */
 }
- 
-#pin-container{
+
+#pin-container {
+    position: relative;
     margin: 180px 0 207px 0;
 }
- 
-.pin{
+
+.pin {
     position: absolute;
     width: 1935.5px;
     height: 266.713px;
     z-index: 1;
 }
-.polaroid1, .polaroid2, .polaroid3{
-    position: absolute;
+
+.img-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
     width: 425px;
     height: 442.5px;
-    z-index: 0;
 }
 
-.polaroid1, #output img{
-    top: 33%;
-    left: 8%;
+.polaroid1 {
+    position: absolute;
+    top: 39%;
+    left: 40%;
     transform: rotate(8.161deg);
 }
-
-.polaroid2{
-    top: 38%;
-    left: 39%; 
+#title1{
+    position: absolute;
+    top: 111%;
+    left: 45%;
+    transform: rotate(8.161deg);
+    /* margin-top: 10px; */
 }
 
-.polaroid3{
-    top: 34%;
-    right: 9%;
+
+.polaroid2 {
+    position: absolute;
+    top: -47%;
+    left: 180%;
+}
+
+#title2{
+ position: absolute;
+ top: 25%;
+ left: 190%;
+     
+}
+
+.polaroid3 {
+    position: absolute;
+    top: -158%;
+    left: 310%;
     transform: rotate(-5.801deg);
 }
- 
+
+#title3{
+    position: absolute;
+    top: -78%;
+    left: 325%;
+    transform: rotate(-5.801deg);
+}
+
 .home-container {
     display: flex;
-    position: absolute;  
-    top: 88px; 
-    left: 197px;  
+    position: absolute;
+    top: 88px;
+    left: 197px;
     cursor: pointer;
 }
 
-.message{
+.message {
     color: #174488;
     font-family: 'omyu_pretty';
     font-size: 2.3rem;
@@ -91,31 +113,19 @@ body{
     margin-top: 3px;
 }
 
-.bi{
+.bi {
     font-size: 1.9rem;
     color: #174488;
 }
 
-#output{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-#output img{
-    position: absolute;
+/* 받아온 사진 크기 */
+.output img { 
     width: 425px;
     height: 442.5px;
     z-index: 0;
 }
 
-.title{
+.title {
     font-size: 2rem;
     font-family: 'omyu_pretty';
-    position: absolute;
-    top: 64%;
-    left: 10%;
-    transform: rotate(8.161deg);
 }
-
-
