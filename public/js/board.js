@@ -1,21 +1,24 @@
 let currentPage = 1;
 const photosPerPage = 3;
 
-// 서버로부터 받아온 이미지와 제목을 화면에 표시하는 함수 
+// 서버로부터 받아온 이미지와 제목을 화면에 표시하는 함수
 function displayPage(imagePaths, titles) {
-    const outputDiv = document.getElementById('output');
-    outputDiv.innerHTML = '';
+    for (let i = 0; i < photosPerPage; i++) {
+        const outputDiv = document.getElementById(`output${i + 1}`);
+        const titleDiv = document.getElementById(`title${i + 1}`);
+        outputDiv.innerHTML = '';
 
-    imagePaths.forEach((image, index) => {
-        const imgContainer = document.createElement('div');
-        imgContainer.classList.add('img-container');
-
-        imgContainer.innerHTML = `
-            <img src="${image.image_paths}" alt="Photo ${index + 1}" class="polaroid">
-            <div class="title">${titles[index] ? titles[index].titles : ''}</div>
-        `;
-        outputDiv.appendChild(imgContainer);
-    });
+        if (imagePaths[i]) {
+            outputDiv.innerHTML = `
+                <img src="${imagePaths[i].image_paths}" alt="Photo ${i + 1}" class="polaroid${i+1}">
+            `;
+            titleDiv.textContent = titles[i] ? titles[i].titles : '';
+        } else {
+            // 이 슬롯에 이미지가 없는 경우 출력 div와 제목 비우기(안보이게)
+            outputDiv.innerHTML = '';
+            titleDiv.textContent = '';
+        }
+    }
 }
 
 // 페이지를 가져와서 화면에 표시하는 함수
@@ -33,7 +36,7 @@ function fetchAndDisplayPage(pageNumber) {
         })
         .catch(error => console.error('Error:', error));
 }
-fetchAndDisplayPage(1)
+fetchAndDisplayPage(1);
 
 function updateNavigation(pagination) {
     const prevButton = document.getElementById('btn-prev');
