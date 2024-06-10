@@ -11,8 +11,8 @@ function displayPage(imagePaths, titles) {
         imgContainer.classList.add('img-container');
 
         imgContainer.innerHTML = `
-            <img src="${image.path}" alt="Photo ${index + 1}" class="polaroid">
-            <div class="title">${titles[index] ? titles[index].title : ''}</div>
+            <img src="${image.image_paths}" alt="Photo ${index + 1}" class="polaroid">
+            <div class="title">${titles[index] ? titles[index].titles : ''}</div>
         `;
         outputDiv.appendChild(imgContainer);
     });
@@ -20,12 +20,12 @@ function displayPage(imagePaths, titles) {
 
 // 페이지를 가져와서 화면에 표시하는 함수
 function fetchAndDisplayPage(pageNumber) {
-    fetch(`/board?page=${pageNumber}`)
+    fetch(`/board/board?page=${pageNumber}`)
         .then(response => response.json())
         .then(data => {
             console.log('Fetched data:', data);
             if (data.message.includes("성공")) {
-                displayPage(data.image_paths, data.titles);
+                displayPage(data.imagePaths, data.titles);
                 updateNavigation(data.pagination);
             } else {
                 console.error('Error:', data.message);
@@ -33,7 +33,7 @@ function fetchAndDisplayPage(pageNumber) {
         })
         .catch(error => console.error('Error:', error));
 }
-fetchAndDisplayPage(100);
+fetchAndDisplayPage(1)
 
 function updateNavigation(pagination) {
     const prevButton = document.getElementById('btn-prev');
