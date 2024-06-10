@@ -4,7 +4,7 @@ const router = express.Router();
 const { Op } = require('sequelize');
 
 // 게시판 페이지에 사진, 글 각각 세 개씩 보여주는 get 메소드
-router.get('/', async (req, res) => {
+router.get('/board', async (req, res) => {
     try {
       const page = parseInt(req.query.page) || 1; // 요청된 페이지. 기본값은 1
       const perPage = 3; // 페이지당 항목 수
