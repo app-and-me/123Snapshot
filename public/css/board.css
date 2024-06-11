@@ -63,7 +63,7 @@ body {
 }
 #title1{
     position: absolute;
-    top: 112%;
+    top: 113%;
     left: 45%;
     width: 300px;
     transform: rotate(8.161deg);
@@ -79,7 +79,7 @@ body {
 
 #title2{
  position: absolute;
- top: 27%;
+ top: 28%;
  left: 190%;
  width: 300px;
  width: 300px;
@@ -130,6 +130,6 @@ body {
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: 'omyu_pretty';
 }
