@@ -57,14 +57,15 @@ body {
 
 .polaroid1 {
     position: absolute;
-    top: 39%;
+    top: 38%;
     left: 40%;
     transform: rotate(8.161deg);
 }
 #title1{
     position: absolute;
-    top: 111%;
+    top: 112%;
     left: 45%;
+    width: 300px;
     transform: rotate(8.161deg);
     /* margin-top: 10px; */
 }
@@ -72,14 +73,16 @@ body {
 
 .polaroid2 {
     position: absolute;
-    top: -47%;
+    top: -48%;
     left: 180%;
 }
 
 #title2{
  position: absolute;
- top: 25%;
+ top: 27%;
  left: 190%;
+ width: 300px;
+ width: 300px;
      
 }
 
@@ -92,9 +95,10 @@ body {
 
 #title3{
     position: absolute;
-    top: -78%;
-    left: 325%;
+    top: -81%;
+    left: 324%;
     transform: rotate(-5.801deg);
+    width: 300px;
 }
 
 .home-container {
