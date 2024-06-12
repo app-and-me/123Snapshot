@@ -11,9 +11,11 @@ body {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 
-#btn-prev, #btn-next {
+#btn-prev,
+#btn-next {
     width: 87px;
     height: 87px;
     background-color: var(--color1);
@@ -61,7 +63,8 @@ body {
     left: 40%;
     transform: rotate(8.161deg);
 }
-#title1{
+
+#title1 {
     position: absolute;
     top: 113%;
     left: 45%;
@@ -77,13 +80,13 @@ body {
     left: 180%;
 }
 
-#title2{
- position: absolute;
- top: 28%;
- left: 190%;
- width: 300px;
- width: 300px;
-     
+#title2 {
+    position: absolute;
+    top: 28%;
+    left: 190%;
+    width: 300px;
+    width: 300px;
+
 }
 
 .polaroid3 {
@@ -93,7 +96,7 @@ body {
     transform: rotate(-5.801deg);
 }
 
-#title3{
+#title3 {
     position: absolute;
     top: -81%;
     left: 324%;
@@ -123,7 +126,7 @@ body {
 }
 
 /* 받아온 사진 크기 */
-.output img { 
+.output img {
     width: 425px;
     height: 442.5px;
     z-index: 0;
@@ -132,4 +135,42 @@ body {
 .title {
     font-size: 1.5rem;
     font-family: 'omyu_pretty';
+}
+
+#bubble1 {
+    position: absolute;
+    bottom: -100px;
+    left: 7%;
+    animation: moveUp 6s linear infinite;
+}
+
+#bubble2 {
+    position: absolute;
+    bottom: -100px;
+    left: 30%;
+    animation: moveUp 8.5s linear infinite;
+}
+
+#bubble3 {
+    position: absolute;
+    bottom: -100px;
+    left: 55%;
+    animation: moveUp 7.5s linear infinite;
+}
+
+#bubble4 {
+    position: absolute;
+    bottom: -100px;
+    left: 80%;
+    animation: moveUp 5.5s linear infinite;
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-110vh);
+    }
 }
