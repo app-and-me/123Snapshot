@@ -18,27 +18,43 @@ body {
 }
 
 .letter{
-    width: 848px;
-    height: 680px;   
+    width: 782px;
+    height: 826px;   
 }
 
 #message1{
     position: absolute;
-    top: 35%;
+    top: 32%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 #message2{
     position: absolute;
-    top: 42%;
+    top: 39%;
     left: 50%;
     transform: translate(-50%, -50%); 
 }
+#message3{
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-#message1, #message2 {
-    font-size: 3.125rem;
+#message4{
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#message1, #message2, #message3, #message4 {
+    font-size: 3rem;
     font-family: 'omyu_pretty';
     color: var(--color6);
 }
- 
+
+.message-wrap{
+    /* margin-top: 120px; */
+}
