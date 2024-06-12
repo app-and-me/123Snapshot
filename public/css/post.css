@@ -16,15 +16,24 @@
     flex-direction: column;  
      
 }
+.blur-container{
+    width: 840px;
+    height: 450px;
+    border-radius: 37px;
+    background: rgba(247, 243, 234, 0.28);
+
+    /* 백그라운블러그림자 */
+    box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(9px);
+}
 .message-wrapper{
-    width: 600px;
-    height: 200px;
+    width: 502px;
+    height: 133px;
     background-color: var(--color1);
     color: var(--color3);
     border-radius: 16px;
     padding: 20px;
-     
-    
+    margin: 135px auto auto 150px;
 }
 .message{
     font-size: 2rem;
@@ -35,6 +44,6 @@
 }
 
 .m1{
-     margin-top: 30px;
+     margin-top: 18px;
      font-size: 2.1rem;
 }

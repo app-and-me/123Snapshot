@@ -15,11 +15,25 @@ body {
     height: 100vh;
 }
 
+.wrap{
+    width: 872px;
+    height: 590px;
+    border-radius: 37px;
+    background: rgba(255, 255, 255, 0.28);
+
+    /* 백그라운블러그림자 */
+    box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(9px);
+}
+.btn-container{
+    margin-left: 183px;
+}
 
 .open{
     font-size: 2rem;
     font-family: 'omyu_pretty';
     color: var(--color2);
+    margin: 140px auto auto 330px; 
 }
 
 #public-button, #private-button{

@@ -24,9 +24,12 @@ body {
 .blur-container{
     width: 1062px;
     height: 740px;
-     
-     background: rgba(255, 255, 255, 0.5); /* 반투명 배경 */
     border-radius: 37px;
+    background: rgba(255, 255, 255, 0.28);
+    
+    /* 백그라운블러그림자 */
+    box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(9px);
 
 }
 .wrap{
@@ -39,7 +42,7 @@ body {
     font-size: 2.5rem;  
     margin-left: -160px;
 }
-
+ 
 #writing-box{
     width: 700px;
     height: 300px;
@@ -65,7 +68,7 @@ body {
     height: 52px;
     border-radius: 8px;
     border: 1px solid var(--color4);
-    background: var(--color2);
+    background: #3173B0;
     color: var(--color1);
     font-size: 1.5rem;
     cursor: pointer;
@@ -73,7 +76,7 @@ body {
 }
 
 .finish:hover{
-    background-color: var(--color3);
+    background-color: #2569a8;
 }
 
 .placeholder {
