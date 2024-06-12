@@ -1,10 +1,3 @@
-// document.addEventListener("DOMContentLoaded", function() {
-//     setTimeout(function() {
-//         var letterballoon = document.getElementById('letterballoon');
-//         letterballoon.style.bottom = '160px'; // Change bottom position to show the element
-//     }, 1000); // Show after 1 second
-// });
-
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
         var letterballoon = document.getElementById('letterballoon');
