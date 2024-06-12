@@ -21,10 +21,23 @@ body {
     height: 100vh;
 }
 
+.blur-container{
+    width: 1062px;
+    height: 740px;
+     
+     background: rgba(255, 255, 255, 0.5); /* 반투명 배경 */
+    border-radius: 37px;
+
+}
+.wrap{
+    margin-left: 160px;
+    margin-top: 100px;
+}
 .guide{
     color: var(--color2);
     text-align: center;
     font-size: 2.5rem;  
+    margin-left: -160px;
 }
 
 #writing-box{
@@ -34,6 +47,7 @@ body {
     border: 1px solid var(--color4);
     background: var(--color1);
     margin-top: 70px;
+     
 
     padding: 20px; 
     outline: none;
