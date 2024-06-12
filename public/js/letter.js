@@ -1,5 +1,3 @@
 setTimeout(function(){
-   window.location.href="/shot"; //3초 후 다음 페이지로 이동
-},4500)
-
- 
+    window.location.href="/shot";  
+},2500);
