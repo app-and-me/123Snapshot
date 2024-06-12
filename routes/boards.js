@@ -66,15 +66,4 @@ router.get('/board', async (req, res) => {
 // app.js에서 사용할 수 있도록 내보냄
 module.exports = router;
 
-function createRandomImage() {
-    const img = document.createElement('div');
-    img.classList.add('animated-image');
-    img.style.left = Math.random() * window.innerWidth + 'px';
-    document.body.appendChild(img);
-
-    setTimeout(() => {
-      document.body.removeChild(img);
-    }, 5000);
-  }
-
-  setInterval(createRandomImage, 1000);
+ 
