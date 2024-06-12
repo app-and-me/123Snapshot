@@ -18,7 +18,9 @@ body {
 #btn-next {
     width: 87px;
     height: 87px;
-    background-color: var(--color1);
+    background: rgba(255, 255, 255, 0.28);
+    box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(9px);
     border-radius: 100%;
     border: none;
     cursor: pointer;
@@ -36,7 +38,16 @@ body {
     top: 50%;
     right: 2%;
 }
+.left{
+    margin-right: 8px;
+}
 
+#btn-prev:hover{
+    transform: scale(1.06);
+}
+#btn-next:hover{
+    transform: scale(1.06);
+}
 #pin-container {
     position: relative;
     margin: 180px 0 207px 0;
