@@ -5,15 +5,11 @@ const range = document.getElementById("jsRange");
 const imageLoader = document.getElementById("jsImageLoader");
 
 const INITIAL_COLOR = "#2c2c2c";
-// const CANVAS_SIZE = 688;
 
-// canvas.width = CANVAS_SIZE;
-// canvas.height = CANVAS_SIZE;
+const CANVAS_WIDTH = 688;
+const CANVAS_HEIGHT = 746;
 
-const CANVAS_WIDTH = 688; // 추가된 부분
-const CANVAS_HEIGHT = 746; // 추가된 부분
-
-canvas.width = CANVAS_WIDTH; // 수정된 부분
+canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
 ctx.fillStyle = "white";
@@ -181,8 +177,6 @@ penButton.addEventListener('click', () => {
 });
 
 
-//시험
-//일부만 캡처됨
 const completeButton = document.getElementById("complete");
 
 completeButton.addEventListener("click", async () => {
@@ -204,4 +198,24 @@ completeButton.addEventListener("click", async () => {
 
   window.location.href = "/write";
 
+});
+
+//처음 어둡게
+function showOverlay() {
+  const overlay = document.getElementById('overlay');
+  overlay.style.display = 'block';
+  setTimeout(() => {
+      overlay.style.opacity = '1';
+  }, 0);
+
+  setTimeout(() => {
+      overlay.style.opacity = '0';
+      setTimeout(() => {
+          overlay.style.display = 'none';
+      }, 1000);
+  }, 3000);
+}
+
+window.addEventListener('load', () => {
+  showOverlay();
 });
