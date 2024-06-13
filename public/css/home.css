@@ -21,8 +21,6 @@ body {
 }
 
 #container-title {
-
-    /* margin-top: 198px; */
     position: absolute;
     top: 15%;
     left: 45%;
@@ -32,15 +30,13 @@ body {
 #image_balloon {
     margin-left: 65px;
     position: absolute;
-    top: 6%;
-     
+    top: 6%;  
 }
 
 #button-container{
     position: absolute;
     top: 60%;
     left: 40%;
-     
 }
 
 #image_title {
