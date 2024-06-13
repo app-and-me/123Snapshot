@@ -8,7 +8,6 @@
 body {
     background-image: url(../images/bg1.png);
     background-size: cover;
-    overflow: hidden;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -150,14 +149,14 @@ body {
 
 #bubble1 {
     position: absolute;
-    bottom: -100px;
+    bottom: -200px;
     left: 7%;
     animation: moveUp 6s linear infinite;
 }
 
 #bubble2 {
     position: absolute;
-    bottom: -100px;
+    bottom: -450px;
     left: 30%;
     animation: moveUp 8.5s linear infinite;
     width: 200px;
@@ -166,7 +165,7 @@ body {
 
 #bubble3 {
     position: absolute;
-    bottom: -100px;
+    bottom: -400px;
     left: 55%;
     animation: moveUp 7.5s linear infinite;
     width: 300px;
@@ -175,7 +174,7 @@ body {
 
 #bubble4 {
     position: absolute;
-    bottom: -100px;
+    bottom: -200px;
     left: 80%;
     animation: moveUp 5.5s linear infinite;
     width: 150px;
@@ -188,6 +187,6 @@ body {
     }
 
     100% {
-        transform: translateY(-110vh);
+        transform: translateY(-130vh);
     }
 }
