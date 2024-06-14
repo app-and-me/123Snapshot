@@ -3,76 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter Animation with Images</title>
-    <style>
-       
-        body {
-            background-image: url(images/bg1.png);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .closed-envelope{
-            position: absolute;
-            width: 100%;
-            height: auto;
-            top: 43%;
-            left: 30%;
-             transition: opacity 0.015s ease-in-out, transform 0.015s ease-in-out;
-        }
-        .letter{
-            width: 782px;
-            height: 826px;
-            margin-top: 245px;
-            margin-right: 20px;
-            margin-left: 20px;
-        }
-        .open-envelope{
-            display: none;
-        }
-        
-        .closed-envelope {
-            opacity: 1;
-        }
-
-        /* 열린 봉투 및 편지 내용 초기 상태: 숨김 */
-        .open-envelope,
-        .letter-content img {
-            opacity: 0;
-            pointer-events: none; /* 열린 상태에서는 클릭 이벤트 무시 */
-        }
-
-        .letter.letter--open .closed-envelope {
-            opacity: 0; /* 닫힌 봉투 숨김 */
-        }
-
-        .letter.letter--open .open-envelope {
-            opacity: 1; 
-            pointer-events: auto; /* 클릭 이벤트 활성화 */
-        }
-
-        .letter.letter--open .letter-content img {
-            opacity: 1;  
-        }
-
-        
-        .letter-content img {
-            margin-top: -129px;  
-            margin-left: -30px;  
-        }
-        
-        /* 추가 이미지 숨김 */
-        .additional-images {
-            display: none;
-        }
-
-        .closed-envelope{
-            width: 756px;
-            height: 459px;
-        }
-    </style>
+    <title>123snapshot</title>
+    <link href="images/balloon.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="css/letter.css">
 </head>
 <body>
     <div class="letter">
@@ -82,37 +15,7 @@
         <div class="letter-content">
             <img src="images/shows.png" alt="Letter Content" class="letter">
         </div>
-       
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // 페이지 로드 후 1.5초 후에 편지가 열리도록 설정
-            setTimeout(function() {
-                document.querySelector('.letter').classList.add('letter--open');
-                // 열린 봉투 이미지와 편지 내용 이미지 순차적으로 표시
-                setTimeout(function() {
-                  
-                    setTimeout(function() {
-                        document.querySelector('.letter-content img').style.opacity = 1;
-                        // 편지 내용 이미지가 나타난 후 추가 이미지들을 순차적으로 보이기
-                        var additionalImages = document.querySelectorAll('.additional-images img');
-                        var delay = 500; // 각 이미지 사이의 딜레이
-                        additionalImages.forEach(function(image, index) {
-                            setTimeout(function() {
-                                image.style.opacity = 1; // 이미지 보이기
-                                if (index > 0) {
-                                    additionalImages[index - 1].style.opacity = 0; // 이전 이미지 숨기기
-                                }
-                            }, delay * (index + 1)); // 각 이미지마다 일정한 시간 간격으로 보이기
-                        });
-                         
-                        setTimeout(function() {
-                            window.location.href = '/shot';
-                        }, 3000);  
-                    }, 500); // 0.3초 후에 편지 내용 이미지 나타나기
-                }, 700); // 0.5초 후에 열린 봉투 이미지 나타나기
-            }, 1500); // 페이지 로드 후 1.5초 후 편지 열림 시작
-        });
-    </script>
+    <script src="js/letter.js"></script>
 </body>
 </html>
