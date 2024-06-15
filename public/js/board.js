@@ -84,9 +84,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const goHome = () => {
         window.location.href = '/';
     }
-
-    document.getElementById('goHomeButton').addEventListener('click', goHome);
-    document.getElementById('goHomeText').addEventListener('click', goHome);
+    document.getElementById('homeButton').addEventListener('click', goHome);
 });
 
 
@@ -96,3 +94,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         audio.play();
     }, 100);  
 });
+
+ 

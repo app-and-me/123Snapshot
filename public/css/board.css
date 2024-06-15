@@ -120,8 +120,8 @@ body {
 .home-container {
     display: flex;
     position: absolute;
-    top: 88px;
-    left: 35px;
+    top: 60px;
+    left: 58px;
     cursor: pointer;
 }
 
