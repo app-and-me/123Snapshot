@@ -85,3 +85,12 @@ async function takeSnapshot() {
 function goToNextPage() {
     window.location.href = '/design';
 }
+
+document.addEventListener('DOMContentLoaded',(event)=>{
+    setTimeout(() => {
+        const shotAudio = new Audio('audio/shutter.mp3')
+        shotAudio.play();
+    }, 4500); //4.5초 뒤에 소리나게 
+})
+
+ 
