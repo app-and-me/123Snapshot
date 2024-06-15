@@ -26,3 +26,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 700); //열린 봉투 이미지 나타나기
     }, 1800); //편지 열림 시작
 });
+
+//편지 봉투 열리는 sound
+document.addEventListener('DOMContentLoaded',(event)=>{
+    setTimeout(()=>{
+        const audio = new Audio('audio/openLetter.mp3')
+        audio.play();
+    },1000)
+})

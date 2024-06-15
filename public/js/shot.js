@@ -17,6 +17,8 @@ if (navigator.mediaDevices.getUserMedia) {
         });
 }
 
+
+
 async function getUserId() {
     try {
         const response = await fetch('/getUserId');
