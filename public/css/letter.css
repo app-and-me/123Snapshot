@@ -1,60 +1,66 @@
 body {
     background-image: url(../images/bg1.png);
-    background-size: cover;  
-    overflow: hidden;  
-    width: 1920px;
-    height: 1080px;
-    width: 100vw;  
-    height: 100vh;  
-}
-
-#letter-container{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    text-align: center;
 }
 
+.closed-envelope{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 43%;
+    left: 30%;
+     transition: opacity 0.015s ease-in-out, transform 0.015s ease-in-out;
+}
 .letter{
     width: 782px;
-    height: 826px;   
+    height: 826px;
+    margin-top: 245px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.open-envelope{
+    display: none;
 }
 
-#message1{
-    position: absolute;
-    top: 32%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.closed-envelope {
+    opacity: 1;
 }
 
-#message2{
-    position: absolute;
-    top: 39%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-}
-#message3{
-    position: absolute;
-    top: 44%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+/* 열린 봉투 및 편지 내용 초기 상태: 숨김 */
+.open-envelope,
+.letter-content img {
+    opacity: 0;
+    pointer-events: none; /* 열린 상태에서는 클릭 이벤트 무시 */
 }
 
-#message4{
-    position: absolute;
-    top: 49%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.letter.letter--open .closed-envelope {
+    opacity: 0; /* 닫힌 봉투 숨김 */
 }
 
-#message1, #message2, #message3, #message4 {
-    font-size: 3rem;
-    font-family: 'omyu_pretty';
-    color: var(--color6);
+.letter.letter--open .open-envelope {
+    opacity: 1; 
+    pointer-events: auto; /* 클릭 이벤트 활성화 */
 }
 
-.message-wrap{
-    /* margin-top: 120px; */
+.letter.letter--open .letter-content img {
+    opacity: 1;  
+}
+
+
+.letter-content img {
+    margin-top: -129px;  
+    margin-left: -30px;  
+}
+
+/* 추가 이미지 숨김 */
+.additional-images {
+    display: none;
+}
+
+.closed-envelope{
+    width: 756px;
+    height: 459px;
 }

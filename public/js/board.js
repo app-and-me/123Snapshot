@@ -88,3 +88,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('goHomeButton').addEventListener('click', goHome);
     document.getElementById('goHomeText').addEventListener('click', goHome);
 });
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    setTimeout(() => {
+        const audio = new Audio('audio/bgm.mp3');
+        audio.play();
+    }, 100);  
+});
