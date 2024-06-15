@@ -66,6 +66,9 @@ body {
     width: 425px;
     height: 442.5px;
 }
+.polaroid1, .polaroid2, .polaroid3{
+    box-shadow: 12px 9px 10px 0px rgba(0, 0, 0, 0.30);
+}
 
 .polaroid1 {
     position: absolute;

@@ -18,5 +18,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(() => {
         const audio = new Audio('audio/balloonUp.mp3');
         audio.play();
-    }, 1000);  
+    }, 500);  
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    setTimeout(() => {
+        const audio = new Audio('audio/bgm.mp3');
+        audio.play();
+    }, 500);  
 });
