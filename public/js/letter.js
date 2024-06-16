@@ -32,5 +32,5 @@ document.addEventListener('DOMContentLoaded',(event)=>{
     setTimeout(()=>{
         const audio = new Audio('audio/openLetter.mp3')
         audio.play();
-    },1000)
+    },1800)
 })
