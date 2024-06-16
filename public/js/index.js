@@ -51,22 +51,6 @@ document.querySelector('.view-board').addEventListener('click', () => {
 
 });
 
- 
- 
 
-window.onload = () =>{
-    setTimeout(() => {
-        const audio = new Audio('audio/bgm.mp3');
-        if(audio){
-            audio.play();
-        }
-        
-    }, 2000);  
-}
 
-// document.addEventListener('DOMContentLoaded', (event) => {
-//     setTimeout(() => {
-//         const audio = new Audio('audio/bgm.mp3');
-//         audio.play();
-//     }, 2000);  
-// });
+ 

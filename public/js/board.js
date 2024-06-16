@@ -88,11 +88,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    setTimeout(() => {
-        const audio = new Audio('audio/bgm.mp3');
-        audio.play();
-    }, 100);  
-});
+ 
 
  
