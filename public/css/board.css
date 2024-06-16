@@ -42,10 +42,10 @@ body {
 }
 
 #btn-prev:hover{
-    transform: scale(1.06);
+    transform: scale(1.04);
 }
 #btn-next:hover{
-    transform: scale(1.06);
+    transform: scale(1.04);
 }
 #pin-container {
     position: relative;
@@ -124,6 +124,9 @@ body {
     left: 58px;
     cursor: pointer;
 }
+.home-container:hover{
+    transform: scale(1.02);
+}
 
 .message {
     color: #174488;
@@ -183,6 +186,7 @@ body {
     width: 150px;
     height: 150px;
 }
+
 
 @keyframes moveUp {
     0% {
