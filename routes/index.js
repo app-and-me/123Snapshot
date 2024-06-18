@@ -1,22 +1,22 @@
 const express = require('express');
 const {Letter} = require('../models');
 const { Op } = require('sequelize');
+const fs = require('fs');
 // const qs = require('querystring');
 
 const router = express.Router();
 
-let currentUserId = 0;    // 현재 사용자 id 
-
- 
-
 // 새로운 사용자 id 생성, 프론트로 전달
 router.get('/newUserId', (req, res) => {
+  var currentUserId = fs.readFileSync('public/userId.txt', 'utf-8');
   currentUserId += 1;   // 사용자 ID 증가
+  fs.writeFileSync('public/userId.txt', currentUserId);
   res.json({ userId: currentUserId });   // 사용자 id 프론트로 보내기
 });
 
 // 사용자 id 조회, 프론트로 전달
 router.get('/getUserId', (req, res) => {
+  var currentUserId = fs.readFileSync('public/userId.txt', 'utf-8');
   res.json({ userId: currentUserId });
 })
 
