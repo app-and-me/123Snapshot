@@ -9,7 +9,7 @@ const path = require('path');
 const bodyParse = require('body-parser');
 
 const app = express();
-const port = 3000;
+const port = 80;
 
 // 템플릿 엔진으로 ejs 사용
 app.set('view engine', 'ejs');
