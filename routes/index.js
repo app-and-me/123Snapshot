@@ -6,12 +6,11 @@ const fs = require('fs');
 
 const router = express.Router();
 
-// 새로운 사용자 id 생성, 프론트로 전달
 router.get('/newUserId', (req, res) => {
   var currentUserId = fs.readFileSync('public/userId.txt', 'utf-8');
-  currentUserId += 1;   // 사용자 ID 증가
-  fs.writeFileSync('public/userId.txt', currentUserId);
-  res.json({ userId: currentUserId });   // 사용자 id 프론트로 보내기
+  currentUserId = parseInt(currentUserId) + 1;   // 문자열로 읽기 때문에 정수로 변환 후 1 증가
+  fs.writeFileSync('public/userId.txt', currentUserId.toString());    // 다시 문자열로 변환
+  res.json({ userId: currentUserId });   // 사용자 ID를 프론트로 보내기
 });
 
 // 사용자 id 조회, 프론트로 전달
