@@ -46,3 +46,17 @@ async function submitForm(event) {
 
 // 완료 버튼 클릭 이벤트 리스너 등록
 document.querySelector('.finish').addEventListener('click', submitForm);
+
+
+const textarea = document.getElementById('writing-box');
+const charCount = document.getElementById('char-count');
+
+textarea.addEventListener('input', () => {
+    const currentLength = textarea.value.length;
+    charCount.textContent = `${currentLength}/90`;
+
+    if (currentLength > 90) {
+        textarea.value = textarea.value.slice(0, 90);
+        charCount.textContent = '90/90';
+    }
+});

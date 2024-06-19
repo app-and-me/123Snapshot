@@ -82,3 +82,9 @@ body {
     color: var(--color7);
     
 }
+
+#char-count{
+    position: absolute;
+    left: 80.5%;
+    font-size: 1.2rem;
+}
