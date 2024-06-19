@@ -50,8 +50,7 @@ body {
     border: 1px solid var(--color4);
     background: var(--color1);
     margin-top: 70px;
-     
-
+    resize: none;
     padding: 20px; 
     outline: none;
     font-size: 1.5rem;
