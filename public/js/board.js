@@ -30,13 +30,19 @@ function fetchAndDisplayPage(pageNumber) {
             if (data.message.includes("성공")) {
                 displayPage(data.imagePaths, data.titles);
                 updateNavigation(data.pagination);
+                updatePageNumber(pageNumber);
             } else {
                 console.error('Error:', data.message);
             }
         })
         .catch(error => console.error('Error:', error));
 }
-fetchAndDisplayPage(1);
+
+// 페이지 번호를 업데이트하는 함수
+function updatePageNumber(pageNumber) {
+    const pageNumberDiv = document.getElementById('pageNumber');
+    pageNumberDiv.textContent = `- ${pageNumber} -`;
+}
 
 function updateNavigation(pagination) {
     const prevButton = document.getElementById('btn-prev');
@@ -86,8 +92,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
     document.getElementById('homeButton').addEventListener('click', goHome);
 });
-
-
- 
-
- 
