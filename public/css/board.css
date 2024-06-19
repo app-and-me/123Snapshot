@@ -188,11 +188,12 @@ body {
 }
 #pageNumber{
     color: #3173B0;
-    font-family: Inter;
-    font-size: 30px;
+    font-family: 'omyu_pretty';
+    font-size: 32px;
     font-weight: 400;
     line-height: normal;
     position: absolute;
+    
     top: 93%;
     left: 50%;
     
