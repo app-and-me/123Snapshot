@@ -55,8 +55,8 @@ textarea.addEventListener('input', () => {
     const currentLength = textarea.value.length;
     charCount.textContent = `${currentLength}/90`;
 
-    if (currentLength > 90) {
-        textarea.value = textarea.value.slice(0, 90);
+    if (currentLength > 80) {
+        textarea.value = textarea.value.slice(0, 80);
         charCount.textContent = '90/90';
     }
 });
