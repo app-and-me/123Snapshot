@@ -1,18 +1,22 @@
 let currentPage = 1;
 const photosPerPage = 3;
 
-// 서버로부터 받아온 이미지와 제목을 화면에 표시하는 함수
+// 서버로부터 받아온 이미지와 제목을 화면에 표시하는 함수 - displayPage
 function displayPage(imagePaths, titles) {
+    // 최신 사진이 맨 앞에 오도록 배열을 역순으로 정렬
+    const reversedImagePaths = imagePaths.slice().reverse(); // 배열을 복사하고 역순으로 정렬
+    const reversedTitles = titles.slice().reverse(); // 제목 배열도 역순ㅇ로 정렬하기
+
     for (let i = 0; i < photosPerPage; i++) {
         const outputDiv = document.getElementById(`output${i + 1}`);
         const titleDiv = document.getElementById(`title${i + 1}`);
         outputDiv.innerHTML = '';
 
-        if (imagePaths[i]) {
+        if (reversedImagePaths[i]) {
             outputDiv.innerHTML = `
-                <img src="${imagePaths[i].image_paths}" alt="Photo ${i + 1}" class="polaroid${i+1}">
+                <img src="${reversedImagePaths[i].image_paths}" alt="Photo ${i + 1}" class="polaroid${i + 1}">
             `;
-            titleDiv.textContent = titles[i] ? titles[i].titles : '';
+            titleDiv.textContent = reversedTitles[i] ? reversedTitles[i].titles : '';
         } else {
             // 이 슬롯에 이미지가 없는 경우 출력 div와 제목 비우기(안보이게)
             outputDiv.innerHTML = '';
@@ -28,9 +32,9 @@ function fetchAndDisplayPage(pageNumber) {
         .then(data => {
             console.log('Fetched data:', data);
             if (data.message.includes("성공")) {
-                displayPage(data.imagePaths, data.titles);
-                updateNavigation(data.pagination);
-                updatePageNumber(pageNumber);
+                displayPage(data.imagePaths, data.titles); // 데이터를 받아서 displayPage에 전달
+                updateNavigation(data.pagination); // 페이지 네비게이션 업데이트
+                updatePageNumber(pageNumber); // 페이지 번호 업데이트
             } else {
                 console.error('Error:', data.message);
             }
