@@ -128,7 +128,7 @@ body {
 
 }
 
-#eraser {
+#reset {
     width: 68px;
     height: 68px;
     border-radius: 50px;
@@ -153,7 +153,7 @@ body {
 }
 
 #pen:hover,
-#eraser:hover {
+#reset:hover {
     transform: scale(1.10);
 }
 
