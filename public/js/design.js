@@ -131,7 +131,7 @@ function clearCanvas() {
   }
 }
 
-eraser.addEventListener("click", clearCanvas);
+reset.addEventListener("click", clearCanvas);
 
 function sendDataToServer(dataURL) {
   const base64Data = dataURL.split(',')[1];
@@ -219,3 +219,6 @@ function showOverlay() {
 window.addEventListener('load', () => {
   showOverlay();
 });
+
+
+// 지우개 한 획 구현
