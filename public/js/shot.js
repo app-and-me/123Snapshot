@@ -17,8 +17,6 @@ if (navigator.mediaDevices.getUserMedia) {
         });
 }
 
-
-
 async function getUserId() {
     try {
         const response = await fetch('/getUserId');
@@ -49,7 +47,15 @@ async function takeSnapshot() {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     const context = canvas.getContext('2d');
+
+    // 캔버스 좌우 반전 방지 설정
+    context.translate(canvas.width, 0); // 캔버스의 시작 지점을 오른쪽 끝으로 이동
+    context.scale(-1, 1); // 좌우 반전 설정
+
+    // 비디오의 현재 프레임을 캔버스에 그리기
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // 캔버스를 이미지 데이터로 변환
     const dataURL = canvas.toDataURL('image/jpeg');
 
     console.log("사용자 ID:", userId);
@@ -61,9 +67,8 @@ async function takeSnapshot() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ 
-                // userId: userId,
-                imageUrl: dataURL 
+            body: JSON.stringify({
+                imageUrl: dataURL
             })
         });
         const result = await response.text();
@@ -86,11 +91,9 @@ function goToNextPage() {
     window.location.href = '/design';
 }
 
-document.addEventListener('DOMContentLoaded',(event)=>{
+document.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(() => {
         const shotAudio = new Audio('audio/shutter.mp3')
         shotAudio.play();
     }, 4500); //4.5초 뒤에 소리나게 
 })
-
- 
