@@ -6,7 +6,7 @@ if (printButton) {
        printButton.onclick = () => {
             window.location.href = '/';
         };
-    }, 1200);  
+    }, 1205);  
 }
 
 if (notPrintButton) {
