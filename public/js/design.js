@@ -7,7 +7,7 @@ const imageLoader = document.getElementById("jsImageLoader");
 // 캔버스 설정
 const INITIAL_COLOR = "#2c2c2c";
 const CANVAS_WIDTH = 688;
-const CANVAS_HEIGHT = 746;
+const CANVAS_HEIGHT = 745;
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
@@ -122,7 +122,19 @@ function loadImageFromServer(userId) {
       const imagePath = data.imagePath;
       const img = new Image();
       img.onload = function () {
-        ctx.drawImage(img, 67, 50, 554, 505);
+        const targetWidth = 520;
+        const targetHeight = 470;
+        
+        const scale = Math.max(targetWidth / img.width, targetHeight / img.height);
+        const newWidth = img.width * scale;
+        const newHeight = img.height * scale;
+        
+        const x = 69 + (554 - newWidth) / 2;
+        const y = 35 + (505 - newHeight) / 2;
+        
+        ctx.clearRect(63, 50, 554, 505);
+        
+        ctx.drawImage(img, x, y, newWidth, newHeight);
       }
       img.src = imagePath;
     })
