@@ -72,6 +72,7 @@ body {
 
 .polaroid1 {
     position: absolute;
+    background-color: white;
     top: 38%;
     left: 40%;
     transform: rotate(8.161deg);
@@ -89,6 +90,7 @@ body {
 
 .polaroid2 {
     position: absolute;
+    background-color: white;
     top: -48%;
     left: 180%;
 }
@@ -104,6 +106,7 @@ body {
 
 .polaroid3 {
     position: absolute;
+    background-color: white;
     top: -158%;
     left: 310%;
     transform: rotate(-5.801deg);
