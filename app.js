@@ -1,10 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
-const multer = require('multer');
 const sequelize = require("./config/config");
-
-
 const path = require('path');
 const bodyParse = require('body-parser');
 
@@ -20,7 +17,9 @@ const titlesRouter = require('./routes/titles');
 const boardsRouter = require('./routes/boards');
 const indexRouter = require('./routes/index');
 
-sequelize.sync({ force: false })
+// 서버 실행 시 테이블을 재생성 할 것 인지
+// true이면 재생성 하겠다는 뜻
+sequelize.sync({ force: true })
   .then(() => {
     console.log('Database synced')
   })
@@ -38,9 +37,8 @@ app.use('/usersPhotos', express.static(path.join(__dirname, 'usersPhotos')));
 app.use(express.json({ limit : "50mb" }));
 app.use(express.urlencoded({ limit:"50mb", extended: false }));
 
-// app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
-app.use(require('cookie-parser')());
+app.use(require('cookie-parser'));
 app.use(bodyParse.json())
 app.use(session({
     secret: 'your-secret-key',
@@ -48,7 +46,6 @@ app.use(session({
     saveUninitialized: true,
 }));
   
-
 // router
 app.use('/image_paths', imagePathRouter);
 app.use('/titles', titlesRouter);
@@ -59,4 +56,3 @@ app.use('/', indexRouter);
 app.listen(port, () => {
     console.log(`${port}에서 서버 실행`);
 })
-
