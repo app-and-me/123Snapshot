@@ -51,29 +51,32 @@ router.get('/story', (req, res) => {
 });
 
 // story에서 letter으로 이동
-router.get('/letter', (req, res) =>{
+router.get('/letter', (req, res) => {
   res.render('letter');
 })
 
 // letter에서 shot으로 이동
-router.get('/shot', (req, res) =>{
+router.get('/shot', (req, res) => {
   res.render('shot');
 })
 
 // shot에서 design으로 이동
-router.get('/design', (req, res) =>{
+router.get('/design', (req, res) => {
   res.render('design');
 })
 
 // design에서 write으로 이동
-router.get('/write', (req, res) =>{
+router.get('/write', (req, res) => {
   res.render('write');
 })
 
-router.get('/choose', (req, res)=>{
+router.get('/choose', (req, res) => {
   res.render('choose')
 })
 
+router.get('/print', (req, res) => {
+  res.render('print');
+})
 
 router.get('/post', (req, res) => {
   res.render('post');
@@ -116,7 +119,6 @@ router.post('/choose/:userId', async (req, res) => {
     }
 
 })
-
 
 router.get('/board', (req, res) => {
   res.render('board');
