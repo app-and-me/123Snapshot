@@ -1,3 +1,3 @@
 setTimeout(function(){
-    window.location.href="/print";  
+    window.location.href="/";  
 },2500);

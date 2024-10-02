@@ -38,7 +38,7 @@ async function submitForm(event) {
         const result = await saveMessage(userId, message); // 서버에 사용자 ID와 메시지 저장
         console.log("결과:", result);
         
-        window.location.href = "/choose"; //다음 페이지로 이동
+        window.location.href = "/print"; //다음 페이지로 이동
     } catch (error) {
         console.error("Error 발생: ", error);
     }
