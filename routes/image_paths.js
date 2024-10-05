@@ -63,7 +63,7 @@ router.post('/:userId', async (req,res) => {
     }
 });
 
-// 이미지 경로 수정 후 색 이미지, 흑백 이미지로 저장
+// 이미지 경로 수정 후 폴더에 저장
 router.put('/:userId', async (req,res) => {
     try {
         const { userId } = req.params;
@@ -79,7 +79,7 @@ router.put('/:userId', async (req,res) => {
         // 파일 저장 경로 업데이트
         const filename = `${userId}-${Date.now()}.jpg`;     // 파일 이름 생성
         const filePath = path.join(__dirname, '../usersPhotos', filename);           // 파일 경로 생성
-        const grayscaleFilePath = path.join(__dirname, '../printPhotos', filename);  // 흑백 사진 경로 생성
+        // const grayscaleFilePath = path.join(__dirname, '../printPhotos', filename);  // 흑백 사진 경로 생성
 
         // 기존 파일 삭제
         if (fs.existsSync(path.join(__dirname, '..', letter.image_paths))) {    // 기존 파일이 존재하는지 확인
@@ -89,11 +89,11 @@ router.put('/:userId', async (req,res) => {
         // 새 이미지 데이터를 파일로 저장
         fs.writeFileSync(filePath, newImageData.split(';base64,').pop(), {encoding: 'base64'});
 
-        // 흑백 변환 후, 폴더 경로에 저장
-        const printImage = await transformColorImage(grayscaleFilePath)
+        // 흑백 변환 후, 웹에 게시
+        // const printImage = await transformColorImage(grayscaleFilePath)
 
         // 데이터베이스에 이미지 경로 업데이트
-        await letter.update({ image_paths: `/usersPhotos/${filename}` });       //  // 접근할 수 있는 경로로 수정
+        await letter.update({ image_paths: `/usersPhotos/${filename}` });       // 접근할 수 있는 경로로 수정
 
         return res.status(200).json({message: "이미지 수정 성공", updatedImagePath: filePath});
     }
@@ -126,10 +126,10 @@ async function transformColorImage(filePath) {
 
     ctx.putImageData(imageData, 0, 0);
 
-    // 흑백 이미지를 파일로 저장
-    const grayscaleBuffer = canvas.toBuffer('image/jpeg');
-    fs.writeFileSync(filePath, grayscaleBuffer);
+    // 흑백 이미지를 웹에 게시
 }
+
+
 
 // app.js에서 사용할 수 있도록 내보냄
 module.exports = router;    
