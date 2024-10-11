@@ -1,7 +1,11 @@
 const printButton = document.getElementById('public-button');
 const notPrintButton = document.getElementById('private-button');
 
+
 if (printButton) {
+    document.getElementById('public-button').addEventListener('click', function() {
+      window.print();
+    });
         printButton.onclick = () => {
             window.location.href = '/choose';
         };   
