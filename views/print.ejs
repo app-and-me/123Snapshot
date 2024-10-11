@@ -6,6 +6,7 @@
     <title>SnapShot</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/choose.css">
+    <link rel="stylesheet" href="css/print.css">
     <link href="images/balloon.png" rel="shortcut icon" type="image/x-icon">
      
 </head>
@@ -13,8 +14,14 @@
     <div id="container">
         <div class="wrap">
         <div class="open">사진을 인쇄할까요?</div> 
+<!--         
+        <div class="image-container">
+            <img src="/usersPhotos/14-1727095539767.jpg" alt="영수증 이미지">
+        </div> -->
+        <canvas id="jsCanvas" class="canvas"></canvas>
+
         <div class="btn-container">
-        <button type="submit" id="public-button" name="visibility" value="public">네! 인쇄 할래요.</button>
+        <button type="submit" id="public-button"  name="visibility" value="public">네! 인쇄 할래요.</button>
         <button type="submit" id="private-button" name="visibility" value="private" >아니요, 인쇄 안 할래요</button>
     </div>
     </div>

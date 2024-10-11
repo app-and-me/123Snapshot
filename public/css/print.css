@@ -1,0 +1,46 @@
+.wrap {
+    width: 872px;
+    height: 864px;
+    text-align: center;
+    padding-top: 69px;
+}
+
+.open,
+.btn-container,
+#public-button,
+#private-button {
+    margin: 0;
+}
+
+.open {
+    font-size: 42px;
+}
+
+#public-button,
+#private-button {
+    width: 442px;
+    height: 80.364px;
+}
+
+#private-button {
+    margin: 23px 0 61px 0;
+}
+.canvas {
+    background-color: white;
+    width: 369px;
+    height: 401.559px;
+    margin: 40px 0 70px 0;
+}
+@page {
+    size: 80mm 80mm;
+    margin: 0;
+}
+
+ 
+
+@media print {
+    .canvas {
+        border: 1.5px solid black;
+    }
+}
+
