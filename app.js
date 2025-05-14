@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require("./config/config");
 const path = require('path');
+const { swaggerUi, specs } = require("./swagger/swagger");
 
 const app = express();
 
@@ -13,6 +14,8 @@ const imagePathRouter = require('./routes/image_paths');
 const titlesRouter = require('./routes/titles');
 const boardsRouter = require('./routes/boards');
 const indexRouter = require('./routes/index');
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // 서버 실행 시 테이블을 재생성 할 것 인지
 // true이면 재생성 하겠다는 뜻
