@@ -8,10 +8,6 @@ const Letter = (sequelize) => sequelize.define('letters', {
     autoIncrement: true,
     allowNull: false
   },
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: true
-  },
   image_paths: {
     type: DataTypes.STRING(255),
     allowNull: true
@@ -25,15 +21,14 @@ const Letter = (sequelize) => sequelize.define('letters', {
     allowNull: true
   }
 },
-{
-timestamps: false,    // 기본으로 생기는 column을 생기지 않게 함
-indexes: [
   {
-    unique: true,
-    fields: ['userId']    // user별 고유성을 보장
-  }
-]
-});
- 
+    timestamps: false,    // 기본으로 생기는 column을 생기지 않게 함
+    indexes: [
+      {
+        unique: true,
+        fields: ['id']    // user별 고유성을 보장
+      }
+    ]
+  });
+
 module.exports = Letter;
-  
