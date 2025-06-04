@@ -1,9 +1,9 @@
 const express = require('express');
-const {Letter} = require('../models');      // index.js는 require 시 이름 생략 가능 
-const { Op } = require('sequelize');
+const {Letter} = require('../models');
 const path = require('path');   
-const fs = require('fs');           // 파일 시스템 모듈 사용
-const { createCanvas, loadImage  } = require('canvas');   // canvas 사용
+const fs = require('fs');        
+const { createCanvas, loadImage  } = require('canvas');
+const bucket = require('../firebase');
 
 const router = express.Router();
 
@@ -32,23 +32,51 @@ router.get('/:userId', async (req, res) => {
 });
 
 // 이미지 경로 저장
-router.post('/:userId', async (req,res) => {
+router.post('/photos', async (req,res) => {
     try {
-        const { userId } = req.params;
-        const { imageUrl } = req.body;       // 프론트에서 받은 이미지 데이터
+        const { imageUrl } = req.body;
 
         // 파일 저장 경로 설정
-        const filename = `${userId}-${Date.now()}.jpg`;
+        const filename = `upload/${Date.now()}.jpg`;
         const filePath = path.join(__dirname, '../usersPhotos', filename);
 
-        // Base64 데이터를 파일로 저장
-        fs.writeFileSync(filePath, imageUrl.split(';base64,').pop(), {encoding: 'base64'});
+        const matches = imageUrl.match(/^data:(.+);base64,(.+)$/);
+        if (!matches) {
+            return res.status(400).send('잘못된 base64 형식');
+        }
 
-        const [updated] = await Letter.update(      
-            { image_paths: `/usersPhotos/${filename}` },    // 접근할 수 있는 경로로 수정
-            { where: { userId: userId } }
+        const base64Data = matches[2]; // 실제 base64 문자열 부분
+        const buffer = Buffer.from(base64Data, 'base64');
+
+        // 이미지 저장
+        const file = bucket.file(filename);
+
+        const stream = file.createWriteStream({
+            metadata: {
+                contentType: 'image/png',
+            },
+        });
+
+        // 에러 처리
+        stream.on('error', (err) => {
+            console.error('업로드 실패:', err);
+            res.status(500).send('업로드 중 오류 발생');
+        });
+
+        // 업로드 성공 시 처리
+        stream.on('finish', async () => {
+        // Firebase Storage에 접근 가능한 URL 생성
+        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${filename}`;
+        res.json({ imageUrl: publicUrl }); // 프론트에 반환
+        });
+
+        // buffer를 Firebase에 전송 시작
+        stream.end(buffer);
+        
+        const [updated] = await Letter.create(      
+            { image_paths: publicUrl },
         );
-
+        
         if(updated) {
             return res.status(200).json({message:"이미지 저장 성공"});
         }
