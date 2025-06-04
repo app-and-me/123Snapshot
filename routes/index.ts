@@ -1,6 +1,6 @@
-const express = require('express');
-const {Letter} = require('../models');
-const fs = require('fs');
+import express from "express";
+import { Letter } from "../models";
+import fs from "fs";
 
 const router = express.Router();
 
@@ -71,4 +71,4 @@ router.get('/board', (req, res) => {
 */
 
 // app.js에서 사용할 수 있도록 내보냄
-module.exports = router;
+export default router;
