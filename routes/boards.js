@@ -67,4 +67,36 @@ router.get('/board', async (req, res) => {
     }
 });
 
+router.post('/choose/:userId', async (req, res) => { 
+    try {
+        const { yn } = req.body;
+        const { userId } = req.params;
+
+        if(yn == 'yes') {
+          answer = true;
+        }
+        else {
+          answer = false;
+        }
+
+        const [updated] = await Letter.update(
+          { yn : answer },
+          { where : { userId : userId } }
+        )
+
+        if(updated) {
+            return res.status(400).json({ message : "게시여부 저장 성공" })
+        }
+        else {
+            console.log(err);
+            return res.status(400).json({ message : "게시여부 저장 실패" })
+        }
+    }
+    catch(err) {
+        console.log(err);
+        return res.status(500).json({ message : "서버오류로 게시여부 저장 실패" })
+    }
+
+})
+
 module.exports = router;
