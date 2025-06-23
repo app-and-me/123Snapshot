@@ -1,77 +1,98 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import { Letter } from "../models";
-import path from "path";
-import fs from "fs";
 import bucket from "../firebase";
+import { v4 as uuidv4 } from "uuid";
+import multer from "multer";
+import path from "path";
 
 const router = express.Router();
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
-router.get("/:userId", async (req: any, res: any) => {
-	try {
-		const { userId } = req.params;
-		const letter = await Letter.findOne({ where: { userId } });
-		if (!letter)
-			return res
-				.status(404)
-				.json({ message: "해당 이미지를 찾을 수 없습니다." });
-		res.status(200).json({ imagePath: letter.image_paths });
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ message: "이미지 불러오기 실패" });
-	}
-});
+interface UploadRequest extends Request {
+  file: Express.Multer.File;
+}
 
-router.post("/photos", async (req: any, res: any) => {
-	try {
-		const { imageUrl } = req.body;
-		const filename = `upload/${Date.now()}.jpg`;
-		const matches = imageUrl.match(/^data:(.+);base64,(.+)$/);
-		if (!matches) return res.status(400).send("잘못된 base64 형식");
-		const buffer = Buffer.from(matches[2], "base64");
-		const file = bucket.file(filename);
-		const stream = file.createWriteStream({
-			metadata: { contentType: "image/png" },
-		});
-		stream.on("error", (err) =>
-			res.status(500).send("업로드 중 오류 발생")
-		);
-		stream.on("finish", async () => {
-			const publicUrl = `https://storage.googleapis.com/${bucket.name}/${filename}`;
-			await Letter.create({ image_paths: publicUrl });
-			res.status(200).json({
-				message: "이미지 저장 성공",
-				imageUrl: publicUrl,
-			});
-		});
-		stream.end(buffer);
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ message: "서버 오류로 이미지 저장 실패" });
-	}
-});
+/**
+ * @swagger
+ * /upload:
+ *   post:
+ *     summary: 이미지 파일 업로드
+ *     consumes:
+ *       - multipart/form-data
+ *     requestBody:
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               addImageName:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: 이미지 업로드 성공
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                  type: string
+ *                 imageUrl:
+ *                   type: string
+ */
+router.post(
+  "/upload",
+  upload.single("ImageName"),
+  async (req: UploadRequest, res: any) => {
+    if (!req.file) {
+      return res.status(400).json({ message: "업로드된 이미지가 없습니다." });
+    }
 
-router.put("/:userId", async (req: any, res: any) => {
-	try {
-		const { userId } = req.params;
-		const { newImageData } = req.body;
-		const letter = await Letter.findOne({ where: { userId } });
-		if (!letter)
-			return res.status(404).json({ message: "수정할 이미지 찾기 실패" });
-		const filename = `${userId}-${Date.now()}.jpg`;
-		const filePath = path.join(__dirname, "../usersPhotos", filename);
-		if (fs.existsSync(path.join(__dirname, "..", letter.image_paths || "")))
-			fs.unlinkSync(path.join(__dirname, "..", letter.image_paths || ""));
-		fs.writeFileSync(filePath, newImageData.split(";base64,").pop()!, {
-			encoding: "base64",
-		});
-		await letter.update({ image_paths: `/usersPhotos/${filename}` });
-		res.status(200).json({
-			message: "이미지 수정 성공",
-			updatedImagePath: filePath,
-		});
-	} catch (error) {
-		res.status(500).json({ message: "서버 오류로 이미지 수정 실패" });
-	}
-});
+    try {
+      // 확장자 추출
+      const ext = path.extname(req.file.originalname);
+      const filename = `upload/${Date.now()}_${uuidv4()}${ext}`;
+
+      // firebase 관련 메타데이터 설정
+      const metadata = {
+        contentType: req.file.mimetype,
+        cacheControl: "public, max-age=3600", // 1시간 캐싱
+      };
+
+      const file = bucket.file(filename);
+      const stream = file.createWriteStream({
+        metadata,
+        gzip: true,
+      });
+
+      stream.on("error", (err) => {
+        console.error("Firebase 업로드 실패:", err);
+        return res
+          .status(500)
+          .json({ message: "이미지 업로드 실패", error: err.message });
+      });
+
+      stream.on("finish", async () => {
+        const downloadUrl = `https://firebasestorage.googleapis.com/v0/b/${
+          bucket.name
+        }/o/${encodeURIComponent(file.name)}?alt=media`;
+
+        const created = await Letter.create({ image_paths: downloadUrl });
+
+        return res.status(200).json({
+          message: "이미지 업로드 성공",
+          imageUrl: downloadUrl,
+        });
+      });
+
+      stream.end(req.file.buffer);
+    } catch (error: any) {
+      console.error("서버 오류:", error);
+      return res.status(500).json({ message: "서버 오류로 업로드 실패" });
+    }
+  }
+);
 
 export default router;

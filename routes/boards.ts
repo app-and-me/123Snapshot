@@ -72,7 +72,8 @@ router.get("/boards", async (req: any, res: any) => {
 	}
 });
 
-router.post("/choose/:userId", async (req: any, res: any) => {
+
+router.post("/choose/:id", async (req: any, res: any) => {
 	try {
 		const { yn } = req.body;
 		const { userId } = req.params;
