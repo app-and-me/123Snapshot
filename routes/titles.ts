@@ -3,10 +3,16 @@ import { Letter } from "../models";
 
 const router = express.Router();
 
-router.patch("/:id", async (req: any, res: any) => {
-  try {
-    const { id } = req.params;
-    const { message } = req.body;
+/**
+ * @swagger
+ * tags:
+ *   - name: Letters
+ *     description: Letters 관련 API
+ */
+router.post("/:userId", async (req: Request, res: Response) => {
+	try {
+		const { userId } = req.params;
+		const { message } = req.body;
 
     const [updated] = await Letter.update(
       { titles: message },
