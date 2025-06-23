@@ -3,6 +3,12 @@ import { Letter } from "../models";
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Letters
+ *     description: Letters 관련 API
+ */
 router.post("/:userId", async (req: Request, res: Response) => {
 	try {
 		const { userId } = req.params;
