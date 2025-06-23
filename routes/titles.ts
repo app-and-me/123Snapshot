@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import { Letter } from "../models";
 
 const router = express.Router();
@@ -14,20 +14,20 @@ router.post("/:userId", async (req: Request, res: Response) => {
 		const { userId } = req.params;
 		const { message } = req.body;
 
-		const [updated] = await Letter.update(
-			{ titles: message },
-			{ where: { userId } }
-		);
+    const [updated] = await Letter.update(
+      { titles: message },
+      { where: { id } }
+    );
 
-		if (updated) {
-			res.render("choose");
-		} else {
-			res.status(500).json({ message: "메세지 저장 실패" });
-		}
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ message: "서버오류로 메세지 저장 실패" });
-	}
+    if (updated) {
+      return res.status(200).json({ message: "메세지 저장 성공" });
+    } else {
+      return res.status(500).json({ message: "메세지 저장 실패" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "서버오류로 메세지 저장 실패" });
+  }
 });
 
 export default router;

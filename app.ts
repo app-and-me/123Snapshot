@@ -27,7 +27,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: false }));
 
 app.use("/api/image", imagePathRouter);
 app.use("/api/letter", titlesRouter);
-app.use("/board", boardsRouter);
+app.use("/api/board", boardsRouter);
 app.use("/", indexRouter);
 
 app.listen(process.env.PORT, () => {

@@ -79,11 +79,11 @@ router.post(
           bucket.name
         }/o/${encodeURIComponent(file.name)}?alt=media`;
 
-        const created = await Letter.create({ image_paths: downloadUrl });
+        const letter = await Letter.create({ image_paths: downloadUrl });
 
         return res.status(200).json({
           message: "이미지 업로드 성공",
-          imageUrl: downloadUrl,
+          data: letter,
         });
       });
 
