@@ -15,32 +15,39 @@ interface UploadRequest extends Request {
 
 /**
  * @swagger
- * /upload:
+ * /api/image/upload:
  *   post:
- *     summary: 이미지 파일 업로드
- *     consumes:
- *       - multipart/form-data
+ *     summary: 이미지를 업로드하고 Letter에 저장
+ *     tags:
+ *       - Letter
  *     requestBody:
+ *       required: true
  *       content:
  *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
- *               addImageName:
+ *               ImageName:
  *                 type: string
  *                 format: binary
+ *                 description: 업로드할 이미지 파일
  *     responses:
  *       200:
- *         description: 이미지 업로드 성공
+ *         description: 업로드 및 저장 성공
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
  *                 message:
- *                  type: string
- *                 imageUrl:
  *                   type: string
+ *                 data:
+ *                   type: object
+ *                   description: 저장된 Letter 객체
+ *       400:
+ *         description: 이미지가 없을 경우
+ *       500:
+ *         description: 서버 오류
  */
 router.post(
   "/upload",
@@ -62,6 +69,7 @@ router.post(
       };
 
       const file = bucket.file(filename);
+      // 스트림으로 데이터를 Firebase에 전송
       const stream = file.createWriteStream({
         metadata,
         gzip: true,
