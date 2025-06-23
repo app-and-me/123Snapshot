@@ -72,6 +72,40 @@ router.get("/boards", async (req: any, res: any) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/letter/{id}/publish:
+ *   patch:
+ *     summary: 게시 여부 저장
+ *     tags:
+ *       - Letter
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: 게시 여부를 수정할 Letter의 ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               yn:
+ *                 type: string
+ *                 enum: [yes, no]
+ *                 description: 게시 여부 ('yes'는 true, 나머지는 false)
+ *     responses:
+ *       200:
+ *         description: 게시여부 저장 성공
+ *       400:
+ *         description: 게시여부 저장 실패
+ *       500:
+ *         description: 서버 오류
+ */
+
 router.patch("/:id/publish", async (req: any, res: any) => {
   try {
     const { yn } = req.body;
