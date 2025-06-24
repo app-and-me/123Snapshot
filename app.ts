@@ -14,7 +14,7 @@ app.set("view engine", "ejs");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 sequelize
-	.sync({ force: true })
+	.sync({ force: false })
 	.then(() => console.log("Database synced"))
 	.catch((err: any) => console.error("Error syncing database:", err));
 
