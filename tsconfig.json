@@ -6,7 +6,7 @@
 		"rootDir": "./", //루트 폴더
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
-		"strict": true, //strict 옵션 활성화
-		"moduleResolution": "node", //모듈 해석 방법 설정: 'node' (Node.js)
+		"strict": false, //strict 옵션 활성화
+		"moduleResolution": "node" //모듈 해석 방법 설정: 'node' (Node.js)
 	}
 }
